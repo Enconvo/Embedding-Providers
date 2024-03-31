@@ -1,9 +1,9 @@
 {
   "$schema": "https://enconvo.com/schemas/extension.json",
   "name": "embedding",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Embedding Engine For RAG",
-  "title": "Embedding For Document Chat",
+  "title": "Embedding Providers",
   "icon": "icon.png",
   "author": "EnconvoAI",
   "license": "MIT",
