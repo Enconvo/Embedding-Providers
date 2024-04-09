@@ -26,5 +26,5 @@
     "noEmit": true
   },
   "exclude": ["node_modules/", "dist/", "tests/"],
-  "include": ["./src", "../../enconvo/src/api/langchain/native_embedding.ts"]
+  "include": ["./src", "../../enconvo/src/api/langchain/native_embedding.ts", "src/real_ollama.ts"]
 }

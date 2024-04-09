@@ -65,11 +65,40 @@
     },
     {
       "name": "ollama",
-      "title": "Local Embeddings",
+      "title": "Native Local Embeddings",
       "description": "Embedding with Local Embeddings Powered by DistilBERT",
-      "icon": "ollama.png",
+      "icon": "native.png",
       "mode": "llm",
       "preferences": []
+    },
+    {
+      "name": "real_ollama",
+      "title": "Ollama Embeddings",
+      "description": "Embedding with Local Embeddings Powered by Ollama",
+      "icon": "ollama.png",
+      "mode": "llm",
+      "preferences": [
+        {
+          "name": "model",
+          "description": "The model to generate the completion.",
+          "type": "dropdown",
+          "required": false,
+          "title": "Model Name",
+          "default": "llama2:latest",
+          "data": [],
+          "dataProxy": "llm|ollama_models"
+        },
+        {
+          "name": "baseUrl",
+          "description": "Ollama api base url",
+          "type": "textfield",
+          "required": false,
+          "title": "Ollama Api Base Url",
+          "default": "",
+          "defaultProxy": "llm|chat_ollama",
+          "placeholder": "Ollama Api Base Url"
+        }
+      ]
     },
     {
       "name": "azure_openai",
