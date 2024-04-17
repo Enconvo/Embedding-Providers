@@ -271,11 +271,61 @@
           "placeholder": "Project ID"
         }
       ]
+    },
+    {
+      "name": "cohere_models",
+      "title": "cohere Models",
+      "description": "get cohere model list",
+      "icon": "cohere.jpg",
+      "showInCommandList": false,
+      "mode": "no-view",
+      "preferences": [
+        {
+          "name": "apiKey",
+          "description": "api key",
+          "type": "password",
+          "required": false,
+          "title": "Api Key",
+          "default": "",
+          "defaultProxy": "llm|chat_cohere",
+          "placeholder": "Api Key"
+        }
+      ]
+    },
+    {
+      "name": "cohere",
+      "title": "Cohere AI",
+      "description": "Chat using [Cohere](cohere.com), get [API KEY](https://dashboard.cohere.com/)",
+      "icon": "cohere.jpg",
+      "mode": "llm",
+      "preferences": [
+        {
+          "name": "model",
+          "description": "The model to generate the completion.",
+          "type": "dropdown",
+          "required": false,
+          "title": "Model Name",
+          "default": "embed-multilingual-v3.0",
+          "dataProxy": "embedding|cohere_models"
+        },
+        {
+          "name": "apiKey",
+          "description": "api key",
+          "type": "password",
+          "required": false,
+          "title": "Api Key",
+          "default": "",
+          "defaultProxy": "llm|chat_cohere",
+          "placeholder": "Api Key"
+        }
+      ]
     }
   ],
   "dependencies": {
     "@enconvo/api": "^0.1.115",
+    "@langchain/cohere": "^0.0.7",
     "@langchain/community": "^0.0.49",
+    "cohere-ai": "^7.9.4",
     "langchain": "^0.1.33"
   },
   "devDependencies": {
