@@ -1,7 +1,7 @@
 {
   "$schema": "https://enconvo.com/schemas/extension.json",
   "name": "embedding",
-  "version": "1.1.101",
+  "version": "1.1.102",
   "description": "Embedding Engine For RAG",
   "title": "Embedding Providers",
   "icon": "icon.png",
@@ -211,6 +211,64 @@
           "title": "apiKey",
           "default": "",
           "placeholder": "apiKey"
+        }
+      ]
+    },
+    {
+      "name": "premai_models",
+      "title": "premai Models",
+      "description": "get premai model list",
+      "icon": "premai.png",
+      "showInCommandList": false,
+      "mode": "no-view",
+      "preferences": [
+        {
+          "name": "apiKey",
+          "description": "api key",
+          "type": "password",
+          "required": false,
+          "title": "Api Key",
+          "default": "",
+          "defaultProxy": "embedding|premai",
+          "placeholder": "Api Key"
+        }
+      ]
+    },
+    {
+      "name": "premai",
+      "title": "Prem AI",
+      "description": "Chat using [PremAI](https://www.premai.io/) which provide Embedding service",
+      "icon": "premai.png",
+      "mode": "llm",
+      "preferences": [
+        {
+          "name": "model",
+          "description": "The model to generate the completion.",
+          "type": "dropdown",
+          "required": false,
+          "title": "Model Name",
+          "default": "text-embedding-3-small",
+          "dataProxy": "embedding|premai_models"
+        },
+        {
+          "name": "apiKey",
+          "description": "api key",
+          "type": "password",
+          "required": false,
+          "title": "Api Key",
+          "default": "",
+          "defaultProxy": "llm|premai",
+          "placeholder": "Api Key"
+        },
+        {
+          "name": "project_id",
+          "description": "project_id",
+          "type": "textfield",
+          "required": false,
+          "title": "Project ID",
+          "default": "",
+          "defaultProxy": "llm|premai",
+          "placeholder": "Project ID"
         }
       ]
     }
