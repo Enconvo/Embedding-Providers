@@ -6,8 +6,11 @@ settings:
 
 dependencies:
   '@enconvo/api':
-    specifier: ^0.1.113
-    version: 0.1.113
+    specifier: ^0.1.115
+    version: 0.1.115
+  '@langchain/community':
+    specifier: ^0.0.49
+    version: 0.0.49
   langchain:
     specifier: ^0.1.33
     version: 0.1.33
@@ -52,8 +55,8 @@ packages:
       - encoding
     dev: false
 
-  /@enconvo/api@0.1.113:
-    resolution: {integrity: sha512-RxWsqIK8NPUmVKi2SwJzSGZdDiWOyH0u5mPjjJlJRl80JnuP2aJx19/1G/7J0a9ZRIS4KSEiuxptVrecTmytiA==}
+  /@enconvo/api@0.1.115:
+    resolution: {integrity: sha512-Hz0mRBZrWmBZ5ldloj5wNw37vUNzTgCo2v6LCQSa+nlgde0zoU9sR9ycK6PQWA8KwgmxitQZRDAm0+Wj4KS7cg==}
     hasBin: true
     dev: false
 

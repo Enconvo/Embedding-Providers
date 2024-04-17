@@ -29,15 +29,18 @@
           "data": [
             {
               "title": "text-embedding-ada-002",
-              "value": "text-embedding-ada-002"
+              "value": "text-embedding-ada-002",
+              "dimension": "1536"
             },
             {
               "title": "text-embedding-3-small",
-              "value": "text-embedding-3-small"
+              "value": "text-embedding-3-small",
+              "dimension": "1536"
             },
             {
               "title": "text-embedding-3-large",
-              "value": "text-embedding-3-large"
+              "value": "text-embedding-3-large",
+              "dimension": "3072"
             }
           ]
         },
@@ -69,7 +72,23 @@
       "description": "Embedding with Local Embeddings Powered by DistilBERT",
       "icon": "native.png",
       "mode": "llm",
-      "preferences": []
+      "preferences": [
+        {
+          "name": "modelName",
+          "description": "The model to generate the completion.",
+          "type": "dropdown",
+          "required": false,
+          "title": "Model Name",
+          "default": "distilbert",
+          "data": [
+            {
+              "title": "Distilbert",
+              "value": "distilbert",
+              "dimension": "768"
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "real_ollama",
@@ -142,10 +161,63 @@
           "placeholder": "Azure OpenAI Api Key"
         }
       ]
+    },
+    {
+      "name": "voyage",
+      "title": "Voyage AI",
+      "description": "Embedding with Voyage AI",
+      "icon": "voyage.png",
+      "mode": "llm",
+      "preferences": [
+        {
+          "name": "modelName",
+          "description": "The model to generate the completion.",
+          "type": "dropdown",
+          "required": false,
+          "title": "Model Name",
+          "default": "voyage-law-2",
+          "data": [
+            {
+              "title": "voyage-law-2",
+              "value": "voyage-law-2",
+              "context": "16000",
+              "dimension": "1024"
+            },
+            {
+              "title": "voyage-code-2",
+              "value": "voyage-code-2",
+              "context": "16000",
+              "dimension": "1536"
+            },
+            {
+              "title": "voyage-large-2",
+              "value": "voyage-large-2",
+              "context": "16000",
+              "dimension": "1536"
+            },
+            {
+              "title": "voyage-2",
+              "value": "voyage-2",
+              "context": "4000",
+              "dimension": "1024"
+            }
+          ]
+        },
+        {
+          "name": "apiKey",
+          "description": "apiKey",
+          "type": "password",
+          "required": false,
+          "title": "apiKey",
+          "default": "",
+          "placeholder": "apiKey"
+        }
+      ]
     }
   ],
   "dependencies": {
-    "@enconvo/api": "^0.1.113",
+    "@enconvo/api": "^0.1.115",
+    "@langchain/community": "^0.0.49",
     "langchain": "^0.1.33"
   },
   "devDependencies": {
