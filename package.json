@@ -172,19 +172,36 @@
       "mode": "llm",
       "preferences": [
         {
-          "name": "azureOpenAIApiDeploymentName",
-          "description": "Azure OpenAI api deployment name",
-          "type": "textfield",
+          "name": "modelName",
+          "description": "The model to generate the completion.",
+          "type": "dropdown",
           "required": false,
-          "title": "Azure OpenAI Api Deployment Name",
-          "default": ""
+          "title": "Model Name",
+          "default": "text-embedding-3-small",
+          "data": [
+            {
+              "title": "text-embedding-ada-002",
+              "value": "text-embedding-ada-002",
+              "dimension": "1536"
+            },
+            {
+              "title": "text-embedding-3-small",
+              "value": "text-embedding-3-small",
+              "dimension": "1536"
+            },
+            {
+              "title": "text-embedding-3-large",
+              "value": "text-embedding-3-large",
+              "dimension": "3072"
+            }
+          ]
         },
         {
-          "name": "azureOpenAIEndpoint",
-          "description": "Azure OpenAI api Endpoint",
+          "name": "azureOpenAIApiInstanceName",
+          "description": "Azure OpenAI api Instance Name",
           "type": "textfield",
           "required": false,
-          "title": "Azure OpenAI Api Endpoint ",
+          "title": "Azure OpenAI Api Instance Name ",
           "default": ""
         },
         {
@@ -193,10 +210,10 @@
           "type": "textfield",
           "required": false,
           "title": "Azure OpenAI Api Version",
-          "default": "2023-07-01-preview"
+          "default": "2024-02-15-preview"
         },
         {
-          "name": "apiKey",
+          "name": "azureOpenAIApiKey",
           "description": "Azure OpenAI api key",
           "type": "password",
           "required": false,

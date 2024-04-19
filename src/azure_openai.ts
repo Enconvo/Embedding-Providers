@@ -1,10 +1,14 @@
-import { AzureOpenAI } from "@langchain/azure-openai";
-
+import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 
 export default function main(options: any) {
 
 
-    const model = new AzureOpenAI(options);
-    return model
+    options.azureOpenAIApiDeploymentName = options.modelName.value || options.modelName;
+    delete options.modelName;
+
+    return new OpenAIEmbeddings({
+        ...options
+    }
+    );
 }
 
