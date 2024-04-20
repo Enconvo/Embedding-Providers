@@ -23,7 +23,6 @@ export abstract class EmbeddingsProviderBase {
     protected abstract _call(): Promise<EmbeddingsResult>;
 
     async call(): Promise<EmbeddingsResult> {
-        console.log("Calling embeddings provider", this.options)
 
         let dimension = this.options.modelName ? this.options.modelName.dimension : null || this.options.model ? this.options.model.dimension : null;
         if (dimension) {
@@ -41,7 +40,6 @@ export abstract class EmbeddingsProviderBase {
             const tt = await embeddings.embedQuery("1")
             result.dimension = tt.length
         }
-        console.log("Calling embeddings provider", dimension)
         return result
     }
 }

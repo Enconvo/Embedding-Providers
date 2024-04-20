@@ -34,26 +34,6 @@
               "context": 512
             }
           ]
-        },
-        {
-          "name": "openAIApiKey",
-          "description": " api key",
-          "type": "password",
-          "required": false,
-          "title": " Api Key",
-          "default": "default",
-          "placeholder": " Api Key",
-          "visibility": "hidden"
-        },
-        {
-          "name": "baseUrl",
-          "description": " Api base url",
-          "type": "textfield",
-          "visibility": "hidden",
-          "required": false,
-          "title": " Api Base Url",
-          "default": "http://127.0.0.1:8181/v1",
-          "placeholder": " Api Base Url"
         }
       ]
     },

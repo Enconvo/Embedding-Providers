@@ -26,7 +26,8 @@ class EmbeddingsProvider extends EmbeddingsProviderBase {
             ...this.options,
             project_id: 100,
             apiKey: 'default',
-            baseUrl: 'http://127.0.0.1:8181',
+            baseUrl: "https://api.enconvo.com",
+            // baseUrl: 'http://127.0.0.1:8181',
             model: model,
         });
 
