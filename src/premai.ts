@@ -2,13 +2,29 @@
 import { PremEmbeddings } from "@langchain/community/embeddings/premai";
 
 
+import { EmbeddingsProviderBase, EmbeddingsResult } from "./embedding_provider.ts";
+
 export default function main(options: any) {
-    options.model = options.model.value || options.model;
 
-    const embeddings = new PremEmbeddings({
-        ...options
-    });
+    return new EmbeddingsProvider({ options })
 
-    return embeddings
 }
 
+
+
+
+class EmbeddingsProvider extends EmbeddingsProviderBase {
+    protected async _call(): Promise<EmbeddingsResult> {
+        this.options.model = this.options.model.value || this.options.model;
+
+        //@ts-ignore
+        const embeddings = new PremEmbeddings(this.options);
+
+
+        return {
+            embeddings: embeddings,
+        }
+
+    }
+
+}

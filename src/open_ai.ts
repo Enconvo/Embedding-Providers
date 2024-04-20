@@ -1,21 +1,38 @@
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 
+import { EmbeddingsProviderBase, EmbeddingsResult } from "./embedding_provider.ts";
+
 export default function main(options: any) {
 
-    if (options.modelName) {
-        options.modelName = options.modelName.value || options.modelName;
-    }
+    return new EmbeddingsProvider({ options })
 
-
-    let config: any = {
-        baseURL: options.baseUrl
-    }
-
-
-    return new OpenAIEmbeddings({
-        ...options
-    },
-        config
-    );
 }
 
+
+class EmbeddingsProvider extends EmbeddingsProviderBase {
+    protected async _call(): Promise<EmbeddingsResult> {
+
+        if (this.options.modelName) {
+            this.options.modelName = this.options.modelName.value || this.options.modelName;
+        }
+
+
+        let config: any = {
+            baseURL: this.options.baseUrl
+        }
+
+
+        const model = new OpenAIEmbeddings({
+            ...this.options,
+            batchSize: 2048,
+        },
+            config
+        );
+
+        return {
+            embeddings: model,
+        }
+
+    }
+
+}

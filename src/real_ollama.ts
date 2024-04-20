@@ -1,13 +1,29 @@
 import { OllamaEmbeddings } from "langchain/embeddings/ollama";
 
 
+
+import { EmbeddingsProviderBase, EmbeddingsResult } from "./embedding_provider.ts";
+
 export default function main(options: any) {
-    options.model = options.model.value || options.model;
 
-    const model = new OllamaEmbeddings({
-        ...options
-    });
+    return new EmbeddingsProvider({ options })
 
-    return model;
 }
 
+
+class EmbeddingsProvider extends EmbeddingsProviderBase {
+    protected async _call(): Promise<EmbeddingsResult> {
+
+        this.options.model = this.options.model.value || this.options.model;
+
+        const model = new OllamaEmbeddings({
+            ...this.options
+        });
+
+        return {
+            embeddings: model,
+        }
+
+    }
+
+}

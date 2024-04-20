@@ -17,11 +17,42 @@ async function fetch_model(apiKey: string) {
     return items.filter((item) => {
         return item.endpoints.includes("embed")
     }).map((item) => {
+        let dimension = 0
+        switch (item.name) {
+            case "embed-multilingual-v3.0":
+                dimension = 1024
+                break
+            case "embed-multilingual-light-v3.0":
+                dimension = 384
+                break
+            case "embed-multilingual-v2.0":
+                dimension = 768
+                break
+            case "embed-english-v3.0":
+                dimension = 1024
+                break
+            case "embed-english-light-v3.0":
+                dimension = 384
+                break
+            case "embed-english-v2.0":
+                dimension = 4096
+                break
+            case "embed-english-light-v2.0":
+                dimension = 1024
+                break
+
+            default:
+                dimension = 768
+                break
+
+        }
+
         return {
             // 第一个字母大写
             title: `${capitalizeFirstLetter(item.name)}`,
             value: item.name,
-            context: item.context_length
+            context: item.context_length,
+            dimension: dimension
         }
     })
 }

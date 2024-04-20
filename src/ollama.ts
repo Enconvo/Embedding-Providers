@@ -1,14 +1,27 @@
-import { OllamaEmbeddings } from "langchain/embeddings/ollama";
+import { EmbeddingsProviderBase, EmbeddingsResult } from "./embedding_provider.ts";
+import { NativeEmbeddings } from "./langchain/native_embedding.ts";
+
 
 
 export default function main(options: any) {
 
-    options.modelName = options.modelName.value || options.modelName;
+    return new EmbeddingsProvider({ options })
 
-    const model = new OllamaEmbeddings({
-        ...options
-    });
-
-    return model;
 }
 
+
+class EmbeddingsProvider extends EmbeddingsProviderBase {
+    protected async _call(): Promise<EmbeddingsResult> {
+
+        this.options.modelName = this.options.modelName.value || this.options.modelName;
+
+        const model = new NativeEmbeddings({
+            ...this.options
+        });
+
+        return {
+            embeddings: model,
+        }
+    }
+
+}
