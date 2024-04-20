@@ -25,12 +25,13 @@
           "type": "dropdown",
           "required": false,
           "title": "Model Name",
-          "default": "default",
+          "default": "embed-multilingual-v3.0",
           "data": [
             {
-              "title": "EnconvoAI Text Embedding",
-              "value": "default",
-              "dimension": "1536"
+              "title": "EnconvoAI Text Embedding Large",
+              "value": "embed-multilingual-v3.0",
+              "dimension": 1024,
+              "context": 512
             }
           ]
         },

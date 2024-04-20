@@ -11,8 +11,6 @@ export default function main(options: any) {
 }
 
 
-
-
 class EmbeddingsProvider extends EmbeddingsProviderBase {
     protected async _call(): Promise<EmbeddingsResult> {
         this.options.model = this.options.model.value || this.options.model;

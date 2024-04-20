@@ -1,6 +1,7 @@
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { EmbeddingsProviderBase, EmbeddingsResult } from "./embedding_provider.ts";
 import { VoyageEmbeddings } from "./langchain/voyage.ts";
+import { PremEmbeddings } from "./langchain/premai.ts";
 import { CohereEmbeddings } from "@langchain/cohere";
 
 export default function main(options: any) {
@@ -12,11 +13,28 @@ export default function main(options: any) {
 
 class EmbeddingsProvider extends EmbeddingsProviderBase {
     protected async _call(): Promise<EmbeddingsResult> {
+        console.log("options", this.options)
+        const modelName = this.options.modelName.value || this.options.modelName;
 
-        return this.openai()
+        return this.premai(modelName)
     }
 
 
+    premai(model: string) {
+        //@ts-ignore
+        const embeddings = new PremEmbeddings({
+            ...this.options,
+            project_id: 100,
+            apiKey: 'default',
+            baseUrl: 'http://127.0.0.1:8181',
+            model: model,
+        });
+
+        return {
+            embeddings: embeddings,
+        }
+
+    }
     cohere() {
         // this.options.modelName = this.options.modelName.value || this.options.modelName;
 
