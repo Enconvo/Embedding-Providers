@@ -371,7 +371,7 @@
     }
   ],
   "dependencies": {
-    "@enconvo/api": "^0.1.115",
+    "@enconvo/api": "^0.1.120",
     "@langchain/azure-openai": "^0.0.7",
     "@langchain/cohere": "^0.0.7",
     "@langchain/community": "^0.0.49",

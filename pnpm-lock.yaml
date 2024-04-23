@@ -1,13 +1,9 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@enconvo/api':
-    specifier: ^0.1.115
-    version: 0.1.115
+    specifier: ^0.1.120
+    version: 0.1.120
   '@langchain/azure-openai':
     specifier: ^0.0.7
     version: 0.0.7
@@ -163,8 +159,8 @@ packages:
       - supports-color
     dev: false
 
-  /@enconvo/api@0.1.115:
-    resolution: {integrity: sha512-Hz0mRBZrWmBZ5ldloj5wNw37vUNzTgCo2v6LCQSa+nlgde0zoU9sR9ycK6PQWA8KwgmxitQZRDAm0+Wj4KS7cg==}
+  /@enconvo/api@0.1.120:
+    resolution: {integrity: sha512-I2HmcEXUxl/cVqyoD5xB+KiJpe8yMx8ZyyTP3v1RZNqXi+3yaUJVqcrHHWnG1dJ8Ueo2XurLD18dSnyOnH75AA==}
     hasBin: true
     dev: false
 
@@ -2789,3 +2785,7 @@ packages:
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
