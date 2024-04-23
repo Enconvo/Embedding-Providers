@@ -371,7 +371,7 @@
     }
   ],
   "dependencies": {
-    "@enconvo/api": "^0.1.120",
+    "@enconvo/api": "^0.1.123",
     "@langchain/azure-openai": "^0.0.7",
     "@langchain/cohere": "^0.0.7",
     "@langchain/community": "^0.0.49",
@@ -395,5 +395,6 @@
     "format:check": "prettier --list-different \"**/*.ts\"",
     "build": "enconvo",
     "dev": "enconvo --dev"
-  }
+  },
+  "minAppVersion": "1.8.8"
 }
