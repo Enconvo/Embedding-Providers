@@ -34,7 +34,10 @@ export abstract class EmbeddingsProviderBase {
         }
 
         const result = await this._call()
-
+        if (dimension) {
+            result.dimension = dimension
+        }
+        console.log("dimension", result)
         if (!result.dimension) {
             const embeddings = result.embeddings
             const tt = await embeddings.embedQuery("1")
