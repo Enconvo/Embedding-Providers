@@ -1,7 +1,7 @@
 {
   "$schema": "https://enconvo.com/schemas/extension.json",
   "name": "embedding",
-  "version": "1.1.104",
+  "version": "1.1.105",
   "description": "Embedding Engine For RAG",
   "title": "Embedding Providers",
   "icon": "icon.png",
@@ -371,7 +371,7 @@
     }
   ],
   "dependencies": {
-    "@enconvo/api": "^0.1.124",
+    "@enconvo/api": "^0.1.125",
     "@langchain/azure-openai": "^0.0.7",
     "@langchain/cohere": "^0.0.7",
     "@langchain/community": "^0.0.49",
