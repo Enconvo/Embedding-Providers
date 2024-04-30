@@ -122,3 +122,30 @@
 
 
 // }
+
+
+
+// {
+//     "name": "ollama",
+//     "title": "Native Local Embeddings",
+//     "description": "Embedding with Local Embeddings Powered by DistilBERT",
+//     "icon": "native.png",
+//     "mode": "llm",
+//     "preferences": [
+//       {
+//         "name": "modelName",
+//         "description": "The model to generate the completion.",
+//         "type": "dropdown",
+//         "required": false,
+//         "title": "Model Name",
+//         "default": "distilbert",
+//         "data": [
+//           {
+//             "title": "Distilbert",
+//             "value": "distilbert",
+//             "dimension": "768"
+//           }
+//         ]
+//       }
+//     ]
+//   },
