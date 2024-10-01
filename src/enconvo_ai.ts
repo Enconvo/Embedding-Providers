@@ -14,9 +14,8 @@ export default function main(options: any) {
 class EmbeddingsProvider extends EmbeddingsProviderBase {
     protected async _call(): Promise<EmbeddingsResult> {
         // console.log("options", this.options)
-        const modelName = this.options.modelName.value || this.options.modelName;
 
-        return this.premai(modelName)
+        return this.voyage()
     }
 
 

@@ -1,7 +1,7 @@
 {
   "$schema": "https://enconvo.com/schemas/extension.json",
   "name": "embedding",
-  "version": "1.1.108",
+  "version": "1.1.109",
   "description": "Embedding Engine For RAG",
   "title": "Embedding Providers",
   "icon": "icon.png",
@@ -14,8 +14,8 @@
   "commands": [
     {
       "name": "enconvo_ai",
-      "title": "EnconvoAI",
-      "description": "Embedding with EnconvoAI , learn more : [docs](https://docs.enconvo.com/docs/providers/embedding)",
+      "title": "EnConvo Cloud Plan",
+      "description": "Embedding with Enconvo Cloud Plan , learn more : [docs](https://docs.enconvo.com/docs/providers/embedding)",
       "icon": "enconvo.png",
       "mode": "llm",
       "preferences": [
@@ -25,13 +25,13 @@
           "type": "dropdown",
           "required": false,
           "title": "Model Name",
-          "default": "embed-multilingual-v3.0",
+          "default": "voyage-multilingual-2",
           "data": [
             {
-              "title": "EnconvoAI Text Embedding Large",
-              "value": "embed-multilingual-v3.0",
+              "title": "Voyage multilingual 2",
+              "value": "voyage-multilingual-2",
               "dimension": 1024,
-              "context": 512
+              "context": 32000
             }
           ]
         }
@@ -348,6 +348,71 @@
           "default": "",
           "defaultProxy": "llm|chat_cohere",
           "placeholder": "Api Key"
+        }
+      ]
+    },
+    {
+      "name": "siliconflow",
+      "title": "SiliconFlow",
+      "description": "Embedding with [SiliconFlow](https://siliconflow.cn)",
+      "icon": "siliconflow.png",
+      "mode": "llm",
+      "targetCommand": "embedding/open_ai",
+      "preferences": [
+        {
+          "name": "modelName",
+          "description": "The model to generate the embedding.",
+          "type": "dropdown",
+          "required": false,
+          "title": "Model Name",
+          "default": "BAAI/bge-m3",
+          "data": [
+            {
+              "title": "BAAI/bge-m3",
+              "value": "BAAI/bge-m3",
+              "dimension": "1024",
+              "context": 8000
+            },
+            {
+              "title": "netease-youdao/bce-embedding-base_v1",
+              "value": "netease-youdao/bce-embedding-base_v1",
+              "dimension": "768",
+              "context": 512
+            },
+            {
+              "title": "BAAI/bge-large-en-v1.5",
+              "value": "BAAI/bge-large-en-v1.5",
+              "dimension": "1024",
+              "context": 512
+            },
+            {
+              "title": "BAAI/bge-large-zh-v1.5",
+              "value": "BAAI/bge-large-zh-v1.5",
+              "dimension": "1024",
+              "context": 512
+            }
+          ]
+        },
+        {
+          "name": "openAIApiKey",
+          "description": "SiliconFlow api key",
+          "type": "password",
+          "required": false,
+          "title": "SiliconFlow Api Key",
+          "default": "",
+          "defaultProxy": "llm|siliconflow",
+          "placeholder": "SiliconFlow Api Key"
+        },
+        {
+          "name": "baseUrl",
+          "description": "OpenAI api base url",
+          "type": "textfield",
+          "required": false,
+          "title": "OpenAI Api Base Url",
+          "default": "",
+          "defaultProxy": "llm|siliconflow",
+          "placeholder": "OpenAI Api Base Url",
+          "visibility": "hidden"
         }
       ]
     }
