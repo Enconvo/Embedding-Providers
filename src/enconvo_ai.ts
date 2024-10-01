@@ -15,7 +15,7 @@ class EmbeddingsProvider extends EmbeddingsProviderBase {
     protected async _call(): Promise<EmbeddingsResult> {
         // console.log("options", this.options)
 
-        return this.voyage()
+        return this.openai()
     }
 
 
@@ -75,13 +75,13 @@ class EmbeddingsProvider extends EmbeddingsProviderBase {
             this.options.modelName = this.options.modelName.value || this.options.modelName;
         }
 
-
         const model = new OpenAIEmbeddings({
             ...this.options,
             batchSize: 2048,
+            openAIApiKey: "default",
         }, {
-            // baseURL: "https://api.enconvo.com/v1"
-            baseURL: "http://127.0.0.1:8181/v1"
+            baseURL: "https://api-v.enconvo.com/v1"
+            // baseURL: "http://127.0.0.1:8181/v1"
         }
         );
 

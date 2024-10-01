@@ -25,13 +25,13 @@
           "type": "dropdown",
           "required": false,
           "title": "Model Name",
-          "default": "voyage-multilingual-2",
+          "default": "BAAI/bge-m3",
           "data": [
             {
-              "title": "Voyage multilingual 2",
-              "value": "voyage-multilingual-2",
+              "title": "BGE-m3",
+              "value": "BAAI/bge-m3",
               "dimension": 1024,
-              "context": 32000
+              "context": 8000
             }
           ]
         }
