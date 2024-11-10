@@ -16,10 +16,10 @@ export class EnConvoEmbeddingsProvider extends EmbeddingsProvider {
     }
 
     protected async _embed(input: string[], _?: EmbeddingsOptions): Promise<number[][]> {
-        const response = await fetch('https://api.enconvo.com/v1/embeddings', {
+        const response = await fetch('http://127.0.0.1:8181/v1/embeddings', {
+        // const response = await fetch('https://api.enconvo.com/v1/embeddings', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${this.options.apiKey}`,
                 'Content-Type': 'application/json',
                 "accessToken": `${env['accessToken']}`,
                 "client_id": `${env['client_id']}`,
