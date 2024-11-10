@@ -1,19 +1,16 @@
 import { VoyageEmbeddings } from "langchain/embeddings/voyage";
 
-
-
-
-import { EmbeddingsProviderBase, EmbeddingsResult } from "./embeddings_provider.ts";
+import { EmbeddingsProvider, EmbeddingsOptions } from "./embeddings_provider.ts";
 
 export default function main(options: any) {
 
-    return new EmbeddingsProvider({ options })
+    return new VoyageEmbeddingsProvider({ options })
 
 }
 
 
-class EmbeddingsProvider extends EmbeddingsProviderBase {
-    protected async _call(): Promise<EmbeddingsResult> {
+class VoyageEmbeddingsProvider extends EmbeddingsProvider {
+    protected _embed(input: string[], options?: EmbeddingsOptions): Promise<number[][]> {
         this.options.modelName = this.options.modelName.value || this.options.modelName;
 
         const model = new VoyageEmbeddings({
@@ -21,9 +18,7 @@ class EmbeddingsProvider extends EmbeddingsProviderBase {
         }
         );
 
-        return {
-            embeddings: model,
-        }
+        return model.embedDocuments(input);
 
     }
 

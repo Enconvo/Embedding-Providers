@@ -1,16 +1,16 @@
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 
-import { EmbeddingsProviderBase, EmbeddingsResult } from "./embeddings_provider.ts";
+import { EmbeddingsProvider, EmbeddingsOptions } from "./embeddings_provider.ts";
 
 export default function main(options: any) {
 
-    return new EmbeddingsProvider({ options })
+    return new OpenAIEmbeddingsProvider({ options })
 
 }
 
 
-class EmbeddingsProvider extends EmbeddingsProviderBase {
-    protected async _call(): Promise<EmbeddingsResult> {
+class OpenAIEmbeddingsProvider extends EmbeddingsProvider {
+    protected _embed(input: string[], options?: EmbeddingsOptions): Promise<number[][]> {
 
         if (this.options.modelName) {
             this.options.modelName = this.options.modelName.value || this.options.modelName;
@@ -29,9 +29,7 @@ class EmbeddingsProvider extends EmbeddingsProviderBase {
             config
         );
 
-        return {
-            embeddings: model,
-        }
+        return model.embedDocuments(input);
 
     }
 

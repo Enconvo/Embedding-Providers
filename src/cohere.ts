@@ -4,17 +4,17 @@ import { CohereEmbeddings } from "@langchain/cohere";
 
 
 
-import { EmbeddingsProviderBase, EmbeddingsResult } from "./embeddings_provider.ts";
+import { EmbeddingsOptions, EmbeddingsProvider } from "./embeddings_provider.ts";
 
 export default function main(options: any) {
 
-    return new EmbeddingsProvider({ options })
+    return new CohereEmbeddingsProvider({ options })
 
 }
 
 
-class EmbeddingsProvider extends EmbeddingsProviderBase {
-    protected async _call(): Promise<EmbeddingsResult> {
+class CohereEmbeddingsProvider extends EmbeddingsProvider {
+    protected _embed(input: string[], options?: EmbeddingsOptions): Promise<number[][]> {
         this.options.model = this.options.model.value || this.options.model;
 
         const embeddings = new CohereEmbeddings({
@@ -23,9 +23,7 @@ class EmbeddingsProvider extends EmbeddingsProviderBase {
         });
 
 
-        return {
-            embeddings: embeddings,
-        }
+        return embeddings.embedDocuments(input);
 
     }
 

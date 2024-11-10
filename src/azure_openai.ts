@@ -1,26 +1,28 @@
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { EmbeddingsProviderBase, EmbeddingsResult } from "./embeddings_provider.ts";
+import { EmbeddingsOptions, EmbeddingsProvider } from "./embeddings_provider.ts";
 
 export default function main(options: any) {
 
-    return new EmbeddingsProvider({ options })
+    return new AzureOpenAIEmbeddingsProvider({ options })
 
 }
 
 
-class EmbeddingsProvider extends EmbeddingsProviderBase {
-    protected async _call(): Promise<EmbeddingsResult> {
+class AzureOpenAIEmbeddingsProvider extends EmbeddingsProvider {
+
+
+    protected _embed(input: string[], options?: EmbeddingsOptions): Promise<number[][]> {
+
         this.options.azureOpenAIApiDeploymentName = this.options.modelName.value || this.options.modelName;
         delete this.options.modelName;
 
         const embeddings = new OpenAIEmbeddings({
             ...this.options
-        }
-        );
+        });
 
-        return {
-            embeddings: embeddings,
-        }
+        return embeddings.embedDocuments(input);
+
     }
+
 
 }

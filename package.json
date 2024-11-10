@@ -291,63 +291,6 @@
       ]
     },
     {
-      "name": "premai_models",
-      "title": "premai Models",
-      "description": "get premai model list",
-      "icon": "premai.png",
-      "showInCommandList": false,
-      "mode": "no-view",
-      "preferences": [
-        {
-          "name": "apiKey",
-          "description": "Prem AI Api Key",
-          "type": "password",
-          "required": false,
-          "title": "Api Key",
-          "default": "",
-          "defaultProxy": "embedding|premai",
-          "placeholder": "Api Key"
-        }
-      ]
-    },
-    {
-      "name": "premai",
-      "title": "Prem AI",
-      "description": "Chat using [PremAI](https://www.premai.io/) which provide Embedding service",
-      "icon": "premai.png",
-      "mode": "provider",
-      "preferences": [
-        {
-          "name": "model",
-          "description": "The model to generate the completion.",
-          "type": "dropdown",
-          "required": false,
-          "title": "Model Name",
-          "default": "text-embedding-3-small",
-          "dataProxy": "embedding|premai_models"
-        },
-        {
-          "name": "apiKey",
-          "description": "Prem AI Api Key",
-          "type": "password",
-          "required": false,
-          "title": "Api Key",
-          "default": "",
-          "defaultProxy": "llm|premai",
-          "placeholder": "Api Key"
-        },
-        {
-          "name": "project_id",
-          "description": "project_id",
-          "type": "number",
-          "required": false,
-          "title": "Project ID",
-          "defaultProxy": "llm|premai",
-          "placeholder": "Project ID"
-        }
-      ]
-    },
-    {
       "name": "cohere_models",
       "title": "cohere Models",
       "description": "get cohere model list",
