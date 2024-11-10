@@ -1,4 +1,4 @@
-import { EmbeddingsProviderBase, EmbeddingsResult } from "./embedding_provider.ts";
+import { EmbeddingsProviderBase, EmbeddingsResult } from "./embeddings_provider.ts";
 import { NativeEmbeddings } from "./langchain/native_embedding.ts";
 
 

@@ -3,7 +3,7 @@ import { VoyageEmbeddings } from "langchain/embeddings/voyage";
 
 
 
-import { EmbeddingsProviderBase, EmbeddingsResult } from "./embedding_provider.ts";
+import { EmbeddingsProviderBase, EmbeddingsResult } from "./embeddings_provider.ts";
 
 export default function main(options: any) {
 

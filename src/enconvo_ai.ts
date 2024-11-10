@@ -1,96 +1,42 @@
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { EmbeddingsProviderBase, EmbeddingsResult } from "./embedding_provider.ts";
-import { VoyageEmbeddings } from "./langchain/voyage.ts";
-import { PremEmbeddings } from "./langchain/premai.ts";
-import { CohereEmbeddings } from "@langchain/cohere";
+import { env } from 'process';
+import { EmbeddingsProvider, EmbeddingsOptions } from './embeddings_provider.ts';
 
-export default function main(options: any) {
 
-    return new EmbeddingsProvider({ options })
+export default function main(embeddingsOptions: EmbeddingsOptions) {
+
+    return new EnConvoEmbeddingsProvider({ options: embeddingsOptions })
 
 }
 
 
-class EmbeddingsProvider extends EmbeddingsProviderBase {
-    protected async _call(): Promise<EmbeddingsResult> {
-        // console.log("options", this.options)
+export class EnConvoEmbeddingsProvider extends EmbeddingsProvider {
 
-        return this.openai()
+    constructor(fields: { options: EmbeddingsOptions }) {
+        super(fields);
     }
 
-
-    premai(model: string) {
-        //@ts-ignore
-        const embeddings = new PremEmbeddings({
-            ...this.options,
-            project_id: 100,
-            apiKey: 'default',
-            baseUrl: "https://api.enconvo.com",
-            // baseUrl: 'http://127.0.0.1:8181',
-            model: model,
+    protected async _embed(input: string[], _?: EmbeddingsOptions): Promise<number[][]> {
+        const response = await fetch('https://api.enconvo.com/v1/embeddings', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${this.options.apiKey}`,
+                'Content-Type': 'application/json',
+                "accessToken": `${env['accessToken']}`,
+                "client_id": `${env['client_id']}`,
+                "commandKey": `${env['commandKey']}`
+            },
+            body: JSON.stringify({
+                input: input,
+                model: this.options.modelName
+            })
         });
 
-        return {
-            embeddings: embeddings,
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw new Error(`Embedding request failed: ${result.error?.message || response.statusText}`);
         }
 
+        return result.data.map((item: any) => item.embedding);
     }
-    cohere() {
-        // this.options.modelName = this.options.modelName.value || this.options.modelName;
-
-        const model = new CohereEmbeddings({
-            ...this.options,
-            batchSize: 8,
-            apiKey: "default",
-            model: "embed-multilingual-v3.0"
-            // basePath: "https://api.enconvo.com/v1",
-            // basePath: "http://127.0.0.1:8181/v1",
-        }
-        );
-
-        return {
-            embeddings: model,
-        }
-    }
-
-    voyage() {
-        this.options.modelName = this.options.modelName.value || this.options.modelName;
-
-        const model = new VoyageEmbeddings({
-            ...this.options,
-            batchSize: 8,
-            apiKey: "default",
-            // basePath: "https://api.enconvo.com/v1",
-            basePath: "http://127.0.0.1:8181/v1",
-        }
-        );
-
-        return {
-            embeddings: model,
-        }
-    }
-
-    openai() {
-        if (this.options.modelName) {
-            this.options.modelName = this.options.modelName.value || this.options.modelName;
-        }
-
-        const model = new OpenAIEmbeddings({
-            ...this.options,
-            batchSize: 2048,
-            openAIApiKey: "default",
-        }, {
-            baseURL: "https://api-v.enconvo.com/v1"
-            // baseURL: "http://127.0.0.1:8181/v1"
-        }
-        );
-
-        return {
-            embeddings: model,
-        }
-
-    }
-
 }
-
-

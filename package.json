@@ -1,14 +1,14 @@
 {
   "$schema": "https://enconvo.com/schemas/extension.json",
-  "name": "embedding",
-  "version": "1.1.109",
-  "description": "Embedding Engine For RAG",
+  "name": "embeddings_providers",
+  "version": "1.1.110",
+  "description": "Embedding Providers",
   "title": "Embedding Providers",
   "icon": "icon.png",
   "author": "EnconvoAI",
   "license": "MIT",
   "categories": [
-    "Embedding"
+    "Embeddings Provider"
   ],
   "type": "module",
   "commands": [
@@ -17,7 +17,7 @@
       "title": "EnConvo Cloud Plan",
       "description": "Embedding with Enconvo Cloud Plan , learn more : [docs](https://docs.enconvo.com/docs/providers/embedding)",
       "icon": "enconvo.png",
-      "mode": "llm",
+      "mode": "provider",
       "preferences": [
         {
           "name": "modelName",
@@ -25,13 +25,43 @@
           "type": "dropdown",
           "required": false,
           "title": "Model Name",
-          "default": "BAAI/bge-m3",
+          "default": "voyage-multilingual-2",
           "data": [
             {
-              "title": "BGE-m3",
-              "value": "BAAI/bge-m3",
+              "title": "voyage-3",
+              "value": "voyage-3",
               "dimension": 1024,
-              "context": 8000
+              "context": 32000
+            },
+            {
+              "title": "voyage-3-lite",
+              "value": "voyage-3-lite",
+              "dimension": 512,
+              "context": 32000
+            },
+            {
+              "title": "voyage-finance-2",
+              "value": "voyage-finance-2",
+              "dimension": 1024,
+              "context": 32000
+            },
+            {
+              "title": "voyage-multilingual-2",
+              "value": "voyage-multilingual-2",
+              "dimension": 1024,
+              "context": 32000
+            },
+            {
+              "title": "voyage-law-2",
+              "value": "voyage-law-2",
+              "dimension": 1024,
+              "context": 16000
+            },
+            {
+              "title": "voyage-code-2",
+              "value": "voyage-code-2",
+              "dimension": 1536,
+              "context": 16000
             }
           ]
         }
@@ -42,7 +72,7 @@
       "title": "OpenAI",
       "description": "Embedding with openAI",
       "icon": "openai.png",
-      "mode": "llm",
+      "mode": "provider",
       "preferences": [
         {
           "name": "modelName",
@@ -96,7 +126,7 @@
       "title": "Ollama",
       "description": "Embedding with Local Embeddings Powered by Ollama",
       "icon": "ollama.png",
-      "mode": "llm",
+      "mode": "provider",
       "preferences": [
         {
           "name": "model",
@@ -125,7 +155,7 @@
       "title": "Azure OpenAI",
       "description": "Azure OpenAI",
       "icon": "azure.png",
-      "mode": "llm",
+      "mode": "provider",
       "preferences": [
         {
           "name": "modelName",
@@ -184,7 +214,7 @@
       "title": "Voyage AI",
       "description": "Embedding with Voyage AI",
       "icon": "voyage.png",
-      "mode": "llm",
+      "mode": "provider",
       "preferences": [
         {
           "name": "modelName",
@@ -262,7 +292,7 @@
       "title": "Prem AI",
       "description": "Chat using [PremAI](https://www.premai.io/) which provide Embedding service",
       "icon": "premai.png",
-      "mode": "llm",
+      "mode": "provider",
       "preferences": [
         {
           "name": "model",
@@ -320,7 +350,7 @@
       "title": "Cohere AI",
       "description": "Chat using [Cohere](cohere.com), get [API KEY](https://dashboard.cohere.com/)",
       "icon": "cohere.jpg",
-      "mode": "llm",
+      "mode": "provider",
       "preferences": [
         {
           "name": "model",
@@ -356,7 +386,7 @@
       "title": "SiliconFlow",
       "description": "Embedding with [SiliconFlow](https://siliconflow.cn)",
       "icon": "siliconflow.png",
-      "mode": "llm",
+      "mode": "provider",
       "targetCommand": "embedding/open_ai",
       "preferences": [
         {
