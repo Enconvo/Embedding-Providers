@@ -17,7 +17,7 @@ export class EnConvoEmbeddingsProvider extends EmbeddingsProvider {
     }
 
     protected async _embed(input: string[], _?: EmbeddingsOptions): Promise<number[][]> {
-        console.log("input", input)
+        // console.log("input", input)
 
         const response = await axios.post('http://127.0.0.1:8181/v1/embeddings',
         // const response = await axios.post('https://api.enconvo.com/v1/embeddings',
@@ -34,6 +34,7 @@ export class EnConvoEmbeddingsProvider extends EmbeddingsProvider {
                 }
             }
         );
+        console.log("response", response.data.usage)
 
         return response.data.data.map((item: any) => item.embedding);
     }
