@@ -28,58 +28,67 @@
           "default": "voyage/voyage-3",
           "data": [
             {
-              "title": "voyage-3",
+              "title": "voyage-3 (96 points per invoke)",
               "value": "voyage/voyage-3",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "concurrency": 15
             },
             {
-              "title": "voyage-3-lite",
-              "value": "voyage/voyage-3-lite",
+              "title": "voyage-3-lite (32 points per invoke)",
+              "value": "voyage/voyage-3-lite", 
               "dimension": 512,
-              "context": 32000
+              "context": 32000,
+              "concurrency": 15
             },
             {
-              "title": "voyage-finance-2",
+              "title": "voyage-finance-2 (192 points per invoke)",
               "value": "voyage/voyage-finance-2",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "concurrency": 15
             },
             {
-              "title": "voyage-multilingual-2",
+              "title": "voyage-multilingual-2 (192 points per invoke)",
               "value": "voyage/voyage-multilingual-2",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "concurrency": 15
             },
             {
-              "title": "voyage-law-2",
+              "title": "voyage-law-2 (96 points per invoke)",
               "value": "voyage/voyage-law-2",
               "dimension": 1024,
-              "context": 16000
+              "context": 16000,
+              "concurrency": 15
             },
             {
-              "title": "voyage-code-2",
+              "title": "voyage-code-2 (96 points per invoke)",
               "value": "voyage/voyage-code-2",
               "dimension": 1536,
-              "context": 16000
+              "context": 16000,
+              "concurrency": 15
             },
             {
-              "title": "text-embedding-3-small",
+              "title": "OpenAI text-embedding-3-small (10 points per invoke)",
               "value": "openai/text-embedding-3-small",
               "dimension": 1536,
-              "context": 8191
+              "context": 8191,
+              "concurrency": 30
             },
             {
-              "title": "text-embedding-3-large", 
+              "title": "OpenAI text-embedding-3-large (55 points per invoke)",
               "value": "openai/text-embedding-3-large",
               "dimension": 3072,
-              "context": 8191
+              "context": 8191,
+              "concurrency": 30
             },
             {
-              "title": "text-embedding-ada-002",
+              "title": "OpenAI text-embedding-ada-002 (40 points per invoke)",
               "value": "openai/text-embedding-ada-002",
               "dimension": 1536,
-              "context": 8191
+              "context": 8191,
+              "concurrency": 30
             }
           ]
         }

@@ -24,7 +24,16 @@ export abstract class EmbeddingsProvider {
             try {
                 return await this._embed(input, options);
             } catch (error) {
-                console.error(`Error on attempt ${4 - retries}/3:`, error);
+                console.error(`Error on attempt ${4 - retries}/3`, error.message);
+                // Write error message to desktop
+                // const fs = require('fs');
+                // const path = require('path');
+                // const desktopPath = path.join(require('os').homedir(), 'Desktop');
+                // const errorLogPath = path.join(desktopPath, 'embedding_errors.json');
+                // const errorMessage = JSON.stringify(input);
+                // fs.writeFileSync(errorLogPath, errorMessage);
+                // console.error('Error details written to:', errorLogPath);
+
                 retries--;
                 if (retries === 0) {
                     const dimension = this.options.modelName.dimension;
