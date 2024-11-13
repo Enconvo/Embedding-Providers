@@ -1,7 +1,7 @@
 {
   "$schema": "https://enconvo.com/schemas/extension.json",
   "name": "embeddings_providers",
-  "version": "1.1.111",
+  "version": "1.1.112",
   "description": "Embedding Providers",
   "title": "Embedding Providers",
   "icon": "icon.png",
