@@ -31,66 +31,65 @@
               "title": "voyage-3 (96 points per invoke)",
               "value": "voyage/voyage-3",
               "dimension": 1024,
-              "context": 32000,
-              "concurrency": 15
+              "context": 32000
             },
             {
               "title": "voyage-3-lite (32 points per invoke)",
               "value": "voyage/voyage-3-lite",
               "dimension": 512,
-              "context": 32000,
-              "concurrency": 15
+              "context": 32000
             },
             {
               "title": "voyage-finance-2 (192 points per invoke)",
               "value": "voyage/voyage-finance-2",
               "dimension": 1024,
-              "context": 32000,
-              "concurrency": 15
+              "context": 32000
             },
             {
               "title": "voyage-multilingual-2 (192 points per invoke)",
               "value": "voyage/voyage-multilingual-2",
               "dimension": 1024,
-              "context": 32000,
-              "concurrency": 15
+              "context": 32000
             },
             {
               "title": "voyage-law-2 (96 points per invoke)",
               "value": "voyage/voyage-law-2",
               "dimension": 1024,
-              "context": 16000,
-              "concurrency": 15
+              "context": 16000
             },
             {
               "title": "voyage-code-2 (96 points per invoke)",
               "value": "voyage/voyage-code-2",
               "dimension": 1536,
-              "context": 16000,
-              "concurrency": 15
+              "context": 16000
             },
             {
               "title": "OpenAI text-embedding-3-small (10 points per invoke)",
               "value": "openai/text-embedding-3-small",
               "dimension": 1536,
-              "context": 8191,
-              "concurrency": 30
+              "context": 8191
             },
             {
               "title": "OpenAI text-embedding-3-large (55 points per invoke)",
               "value": "openai/text-embedding-3-large",
               "dimension": 3072,
-              "context": 8191,
-              "concurrency": 30
+              "context": 8191
             },
             {
               "title": "OpenAI text-embedding-ada-002 (40 points per invoke)",
               "value": "openai/text-embedding-ada-002",
               "dimension": 1536,
-              "context": 8191,
-              "concurrency": 30
+              "context": 8191
             }
           ]
+        },
+        {
+          "name": "concurrency",
+          "description": "Number of concurrent embeddings. Higher numbers mean faster processing but should be adjusted based on provider's rate limit",
+          "type": "number",
+          "required": false,
+          "title": "Concurrency",
+          "default": 15
         }
       ]
     },
@@ -148,6 +147,14 @@
           "defaultProxy": "KEY_OPENAI_BASEURL",
           "default": "https://api.openai.com/v1",
           "placeholder": "OpenAI Api Base Url"
+        },
+        {
+          "name": "concurrency",
+          "description": "Number of concurrent embeddings. Higher numbers mean faster processing but should be adjusted based on provider's rate limit",
+          "type": "number",
+          "required": false,
+          "title": "Concurrency",
+          "default": 30
         }
       ]
     },
@@ -176,6 +183,14 @@
           "default": "",
           "defaultProxy": "llm|chat_ollama",
           "placeholder": "Ollama Api Base Url"
+        },
+        {
+          "name": "concurrency",
+          "description": "Number of concurrent embeddings. Higher numbers mean faster processing but should be adjusted based on provider's rate limit",
+          "type": "number",
+          "required": false,
+          "title": "Concurrency",
+          "default": 5
         }
       ]
     },
@@ -238,6 +253,14 @@
           "title": "Azure OpenAI Api Key",
           "default": "",
           "placeholder": "Azure OpenAI Api Key"
+        },
+        {
+          "name": "concurrency",
+          "description": "Number of concurrent embeddings. Higher numbers mean faster processing but should be adjusted based on provider's rate limit",
+          "type": "number",
+          "required": false,
+          "title": "Concurrency",
+          "default": 10
         }
       ]
     },
@@ -303,54 +326,14 @@
           "default": "",
           "defaultProxy": "KEY_VOYAGE_APIKEY",
           "placeholder": "********"
-        }
-      ]
-    },
-    {
-      "name": "cohere_models",
-      "title": "cohere Models",
-      "description": "get cohere model list",
-      "icon": "cohere.jpg",
-      "showInCommandList": false,
-      "mode": "no-view",
-      "preferences": [
-        {
-          "name": "apiKey",
-          "description": "Cohere Api Key",
-          "type": "password",
-          "required": false,
-          "title": "Api Key",
-          "default": "",
-          "defaultProxy": "llm|chat_cohere",
-          "placeholder": "Api Key"
-        }
-      ]
-    },
-    {
-      "name": "cohere",
-      "title": "Cohere AI",
-      "description": "Chat using [Cohere](cohere.com), get [API KEY](https://dashboard.cohere.com/)",
-      "icon": "cohere.jpg",
-      "mode": "provider",
-      "preferences": [
-        {
-          "name": "model",
-          "description": "The model to generate the completion.",
-          "type": "dropdown",
-          "required": false,
-          "title": "Model Name",
-          "default": "embed-multilingual-v3.0",
-          "dataProxy": "embedding|cohere_models"
         },
         {
-          "name": "apiKey",
-          "description": "Cohere Api Key",
-          "type": "password",
+          "name": "concurrency",
+          "description": "Number of concurrent embeddings. Higher numbers mean faster processing but should be adjusted based on provider's rate limit",
+          "type": "number",
           "required": false,
-          "title": "Api Key",
-          "default": "",
-          "defaultProxy": "llm|chat_cohere",
-          "placeholder": "Api Key"
+          "title": "Concurrency",
+          "default": 15
         }
       ]
     },
@@ -372,39 +355,39 @@
           "data": [
             {
               "title": "BAAI/bge-m3",
-              "value": "BAAI/bge-m3",
-              "dimension": "1024",
+              "value": "BAAI/bge-m3", 
+              "dimension": 1024,
               "context": 8000
             },
             {
               "title": "netease-youdao/bce-embedding-base_v1",
               "value": "netease-youdao/bce-embedding-base_v1",
-              "dimension": "768",
+              "dimension": 768,
               "context": 512
             },
             {
-              "title": "BAAI/bge-large-en-v1.5",
+              "title": "BAAI/bge-large-en-v1.5", 
               "value": "BAAI/bge-large-en-v1.5",
-              "dimension": "1024",
+              "dimension": 1024,
               "context": 512
             },
             {
               "title": "BAAI/bge-large-zh-v1.5",
               "value": "BAAI/bge-large-zh-v1.5",
-              "dimension": "1024",
+              "dimension": 1024,
               "context": 512
             }
           ]
         },
         {
           "name": "openAIApiKey",
-          "description": "SiliconFlow api key",
+          "description": "How to get api key? [🔑here](https://cloud.siliconflow.cn/account/ak)",
           "type": "password",
           "required": false,
-          "title": "SiliconFlow Api Key",
+          "title": "API Key",
           "default": "",
-          "defaultProxy": "llm|siliconflow",
-          "placeholder": "SiliconFlow Api Key"
+          "defaultProxy": "KEY_SILICONFLOW_APIKEY",
+          "placeholder": "sk-********"
         },
         {
           "name": "baseUrl",
@@ -412,10 +395,17 @@
           "type": "textfield",
           "required": false,
           "title": "OpenAI Api Base Url",
-          "default": "",
-          "defaultProxy": "llm|siliconflow",
-          "placeholder": "OpenAI Api Base Url",
+          "default": "https://api.siliconflow.cn/v1",
+          "placeholder": "Api Base Url",
           "visibility": "hidden"
+        },
+        {
+          "name": "concurrency",
+          "description": "Number of concurrent embeddings. Higher numbers mean faster processing but should be adjusted based on provider's rate limit",
+          "type": "number",
+          "required": false,
+          "title": "Concurrency",
+          "default": 15
         }
       ]
     }

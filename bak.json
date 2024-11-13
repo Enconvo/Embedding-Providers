@@ -1,0 +1,79 @@
+    {
+      "name": "cohere",
+      "title": "Cohere AI",
+      "description": "Chat using [Cohere](cohere.com), get [API KEY](https://dashboard.cohere.com/)",
+      "icon": "cohere.jpg",
+      "mode": "provider",
+      "preferences": [
+        {
+          "name": "modelName",
+          "description": "The model to generate the completion.",
+          "type": "dropdown",
+          "required": false,
+          "title": "Model Name",
+          "default": "embed-multilingual-v3.0",
+          "data": [
+            {
+              "title": "embed-english-v3.0",
+              "value": "embed-english-v3.0",
+              "dimension": 1024,
+              "context": 512
+            },
+            {
+              "title": "embed-english-light-v3.0",
+              "value": "embed-english-light-v3.0",
+              "dimension": 384,
+              "context": 512
+            },
+            {
+              "title": "embed-english-v2.0",
+              "value": "embed-english-v2.0",
+              "dimension": 4096,
+              "context": 512
+            },
+            {
+              "title": "embed-english-light-v2.0",
+              "value": "embed-english-light-v2.0",
+              "dimension": 1024,
+              "context": 512
+            },
+            {
+              "title": "embed-multilingual-v3.0",
+              "value": "embed-multilingual-v3.0",
+              "dimension": 1024,
+              "context": 512
+            },
+            {
+              "title": "embed-multilingual-light-v3.0",
+              "value": "embed-multilingual-light-v3.0",
+              "dimension": 384,
+              "context": 512
+            },
+            {
+              "title": "embed-multilingual-v2.0",
+              "value": "embed-multilingual-v2.0",
+              "dimension": 768,
+              "context": 256
+            }
+          ]
+        },
+        {
+          "name": "apiKey",
+          "description": "Cohere api key",
+          "type": "password",
+          "required": false,
+          "title": "Cohere Api Key",
+          "default": "",
+          "defaultProxy": "KEY_COHERE_APIKEY",
+          "placeholder": "********"
+        },
+        {
+          "name": "concurrency",
+          "description": "Number of concurrent embeddings. Higher numbers mean faster processing but should be adjusted based on provider's rate limit",
+          "type": "number",
+          "required": false,
+          "title": "Concurrency",
+          "default": 1
+        }
+      ]
+    },

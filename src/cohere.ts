@@ -1,10 +1,5 @@
-
-import { CohereEmbeddings } from "@langchain/cohere";
-
-
-
-
 import { EmbeddingsOptions, EmbeddingsProvider } from "./embeddings_provider.ts";
+import axios from "axios";
 
 export default function main(options: any) {
 
@@ -14,17 +9,26 @@ export default function main(options: any) {
 
 
 class CohereEmbeddingsProvider extends EmbeddingsProvider {
-    protected _embed(input: string[], options?: EmbeddingsOptions): Promise<number[][]> {
-        this.options.model = this.options.model.value || this.options.model;
 
-        const embeddings = new CohereEmbeddings({
-            ...this.options,
-            inputType: 'classification',
-        });
+    protected async _embed(input: string[], options?: EmbeddingsOptions): Promise<number[][]> {
+        // console.log("input", input)
+        const baseUrl = "https://api.cohere.ai/v1/embed";
+        const response = await axios.post(baseUrl,
+            {
+                texts: input,
+                model: this.options.modelName.value,
+                input_type: "search_document"
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${this.options.apiKey}`,
+                }
+            }
+        );
+        // console.log("response", response.data.texts)
 
-
-        return embeddings.embedDocuments(input);
-
+        return response.data.embeddings;
     }
 
 }
