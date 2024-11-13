@@ -36,7 +36,7 @@
             },
             {
               "title": "voyage-3-lite (32 points per invoke)",
-              "value": "voyage/voyage-3-lite", 
+              "value": "voyage/voyage-3-lite",
               "dimension": 512,
               "context": 32000,
               "concurrency": 15
@@ -116,14 +116,14 @@
               "context": 8191
             },
             {
-              "title": "text-embedding-3-small", 
+              "title": "text-embedding-3-small",
               "value": "text-embedding-3-small",
               "dimension": 1536,
               "context": 8191
             },
             {
               "title": "text-embedding-3-large",
-              "value": "text-embedding-3-large", 
+              "value": "text-embedding-3-large",
               "dimension": 3072,
               "context": 8191
             }
@@ -197,17 +197,20 @@
             {
               "title": "text-embedding-ada-002",
               "value": "text-embedding-ada-002",
-              "dimension": "1536"
+              "dimension": 1536,
+              "context": 8191
             },
             {
               "title": "text-embedding-3-small",
               "value": "text-embedding-3-small",
-              "dimension": "1536"
+              "dimension": 1536,
+              "context": 8191
             },
             {
               "title": "text-embedding-3-large",
               "value": "text-embedding-3-large",
-              "dimension": "3072"
+              "dimension": 3072,
+              "context": 8191
             }
           ]
         },
@@ -251,54 +254,55 @@
           "type": "dropdown",
           "required": false,
           "title": "Model Name",
-          "default": "voyage/voyage-3",
+          "default": "voyage-3",
           "data": [
             {
               "title": "voyage-3",
-              "value": "voyage/voyage-3",
-              "dimension": "1024",
-              "context": "32000"
+              "value": "voyage-3",
+              "dimension": 1024,
+              "context": 32000
             },
             {
-              "title": "voyage-3-lite", 
-              "value": "voyage/voyage-3-lite",
-              "dimension": "512",
-              "context": "32000"
+              "title": "voyage-3-lite",
+              "value": "voyage-3-lite",
+              "dimension": 512,
+              "context": 32000
             },
             {
               "title": "voyage-finance-2",
-              "value": "voyage/voyage-finance-2", 
-              "dimension": "1024",
-              "context": "32000"
+              "value": "voyage-finance-2",
+              "dimension": 1024,
+              "context": 32000
             },
             {
               "title": "voyage-multilingual-2",
-              "value": "voyage/voyage-multilingual-2",
-              "dimension": "1024",
-              "context": "32000"
+              "value": "voyage-multilingual-2",
+              "dimension": 1024,
+              "context": 32000
             },
             {
               "title": "voyage-law-2",
-              "value": "voyage/voyage-law-2",
-              "dimension": "1024",
-              "context": "16000"
+              "value": "voyage-law-2",
+              "dimension": 1024,
+              "context": 16000
             },
             {
               "title": "voyage-code-2",
-              "value": "voyage/voyage-code-2",
-              "dimension": "1536",
-              "context": "16000"
+              "value": "voyage-code-2",
+              "dimension": 1536,
+              "context": 16000
             }
           ]
         },
         {
           "name": "apiKey",
-          "description": "Voyage AI Api Key",
+          "description": "Voyage AI api key",
           "type": "password",
           "required": false,
-          "title": "Api Key",
+          "title": "Voyage AI Api Key",
           "default": "",
-          "placeholder": "Api Key"
+          "defaultProxy": "KEY_VOYAGE_APIKEY",
+          "placeholder": "********"
         }
       ]
     },
