@@ -107,22 +107,25 @@
           "type": "dropdown",
           "required": false,
           "title": "Model Name",
-          "default": "text-embedding-ada-002",
+          "default": "text-embedding-3-small",
           "data": [
             {
               "title": "text-embedding-ada-002",
               "value": "text-embedding-ada-002",
-              "dimension": "1536"
+              "dimension": 1536,
+              "context": 8191
             },
             {
-              "title": "text-embedding-3-small",
+              "title": "text-embedding-3-small", 
               "value": "text-embedding-3-small",
-              "dimension": "1536"
+              "dimension": 1536,
+              "context": 8191
             },
             {
               "title": "text-embedding-3-large",
-              "value": "text-embedding-3-large",
-              "dimension": "3072"
+              "value": "text-embedding-3-large", 
+              "dimension": 3072,
+              "context": 8191
             }
           ]
         },
@@ -133,8 +136,8 @@
           "required": false,
           "title": "OpenAI Api Key",
           "default": "",
-          "defaultProxy": "llm|chat_open_ai",
-          "placeholder": "OpenAI Api Key"
+          "defaultProxy": "KEY_OPENAI_APIKEY",
+          "placeholder": "sk-********"
         },
         {
           "name": "baseUrl",
@@ -142,8 +145,8 @@
           "type": "textfield",
           "required": false,
           "title": "OpenAI Api Base Url",
-          "default": "",
-          "defaultProxy": "llm|chat_open_ai",
+          "defaultProxy": "KEY_OPENAI_BASEURL",
+          "default": "https://api.openai.com/v1",
           "placeholder": "OpenAI Api Base Url"
         }
       ]

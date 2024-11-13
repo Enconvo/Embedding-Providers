@@ -1,6 +1,5 @@
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-
 import { EmbeddingsProvider, EmbeddingsOptions } from "./embeddings_provider.ts";
+import axios from "axios";
 
 export default function main(options: any) {
 
@@ -10,27 +9,24 @@ export default function main(options: any) {
 
 
 class OpenAIEmbeddingsProvider extends EmbeddingsProvider {
-    protected _embed(input: string[], options?: EmbeddingsOptions): Promise<number[][]> {
-
-        if (this.options.modelName) {
-            this.options.modelName = this.options.modelName.value || this.options.modelName;
-        }
-
-
-        let config: any = {
-            baseURL: this.options.baseUrl
-        }
-
-
-        const model = new OpenAIEmbeddings({
-            ...this.options,
-            batchSize: 2048,
-        },
-            config
+    protected async _embed(input: string[], _?: EmbeddingsOptions): Promise<number[][]> {
+        // console.log("input", input)
+        const baseUrl = this.options.baseUrl.endsWith('/') ? this.options.baseUrl : `${this.options.baseUrl}/`;
+        const response = await axios.post(`${baseUrl}embeddings`,
+            {
+                input: input,
+                model: this.options.modelName.value
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${this.options.openAIApiKey}`,
+                }
+            }
         );
+        console.log("response", response.data.usage)
 
-        return model.embedDocuments(input);
-
+        return response.data.data.map((item: any) => item.embedding);
     }
 
 }
