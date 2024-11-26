@@ -20,7 +20,7 @@ export class EnConvoEmbeddingsProvider extends EmbeddingsProvider {
         // console.log("input", input)
 
         // const response = await axios.post('http://127.0.0.1:8181/v1/embeddings',
-            const response = await axios.post('https://api.enconvo.com/v1/embeddings',
+        const response = await axios.post('https://api.enconvo.com/v1/embeddings',
             {
                 input: input,
                 model: this.options.modelName.value
