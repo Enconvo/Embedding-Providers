@@ -4,7 +4,7 @@ const embeddingModels = [
     {
         title: 'nomic-embed-text',
         value: 'nomic-embed-text',
-        context: 8192,
+        context: 512,
         dimension: 768
     },
     {
@@ -28,7 +28,7 @@ const embeddingModels = [
     {
         title: 'snowflake-arctic-embed:137m', // 137M parameter model
         value: 'snowflake-arctic-embed:137m',
-        context: 8192,
+        context: 512,
         dimension: 768
     },
     {
@@ -48,6 +48,12 @@ const embeddingModels = [
         value: 'snowflake-arctic-embed:22m',
         context: 512,
         dimension: 384
+    },
+    {
+        title: 'snowflake-arctic-embed2', // 22M parameter model
+        value: 'snowflake-arctic-embed2',
+        context: 512,
+        dimension: 1024
     },
     {
         title: 'all-minilm', // Embedding model trained on large sentence datasets
@@ -70,7 +76,7 @@ const embeddingModels = [
     {
         title: 'bge-m3', // 33M parameter embedding model
         value: 'bge-m3',
-        context: 8192,
+        context: 512,
         dimension: 1024
     },
     {
@@ -105,13 +111,13 @@ async function fetch_model(options: any) {
             })
             .map((item: any) => {
                 // Find the matching embedding model definition
-                const embeddingModel = embeddingModels.find(em => item.name.includes(em.value));
-                
+                const embeddingModel = embeddingModels.find(em => item.name === em.value || `${item.name}:latest` === em.value);
+
                 return {
                     "title": item.name,
                     "value": item.name,
-                    "dimension": embeddingModel?.dimension,
-                    "context": embeddingModel?.context
+                    "dimension": embeddingModel?.dimension || 512,
+                    "context": embeddingModel?.context || 512
                 }
             });
     } catch (err) {
