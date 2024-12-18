@@ -1,4 +1,4 @@
-import { EmbeddingsOptions, EmbeddingsProvider } from "./embeddings_provider.ts";
+import { EmbeddingsProvider } from "@enconvo/api";
 import axios from "axios";
 
 export default function main(options: any) {
@@ -10,7 +10,7 @@ export default function main(options: any) {
 
 class CohereEmbeddingsProvider extends EmbeddingsProvider {
 
-    protected async _embed(input: string[], options?: EmbeddingsOptions): Promise<number[][]> {
+    protected async _embed(input: string[], options?: EmbeddingsProvider.EmbeddingsOptions): Promise<number[][]> {
         // console.log("input", input)
         const baseUrl = "https://api.cohere.ai/v1/embed";
         const response = await axios.post(baseUrl,

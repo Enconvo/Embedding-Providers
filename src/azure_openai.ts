@@ -1,5 +1,5 @@
+import { EmbeddingsProvider } from "@enconvo/api";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { EmbeddingsOptions, EmbeddingsProvider } from "./embeddings_provider.ts";
 
 export default function main(options: any) {
 
@@ -11,7 +11,7 @@ export default function main(options: any) {
 class AzureOpenAIEmbeddingsProvider extends EmbeddingsProvider {
 
 
-    protected _embed(input: string[], options?: EmbeddingsOptions): Promise<number[][]> {
+    protected _embed(input: string[], options?: EmbeddingsProvider.EmbeddingsOptions): Promise<number[][]> {
 
         this.options.azureOpenAIApiDeploymentName = this.options.modelName.value || this.options.modelName;
         delete this.options.modelName;

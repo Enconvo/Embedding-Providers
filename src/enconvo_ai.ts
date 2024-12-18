@@ -1,22 +1,22 @@
 import { env } from 'process';
-import { EmbeddingsProvider, EmbeddingsOptions } from './embeddings_provider.ts';
 import axios from 'axios';
+import { EmbeddingsProvider } from '@enconvo/api';
 
 
-export default function main(embeddingsOptions: EmbeddingsOptions) {
+export default function main(options: EmbeddingsProvider.EmbeddingsOptions) {
 
-    return new EnConvoEmbeddingsProvider({ options: embeddingsOptions })
+    return new EnConvoEmbeddingsProvider({ options })
 
 }
 
 
 export class EnConvoEmbeddingsProvider extends EmbeddingsProvider {
 
-    constructor(fields: { options: EmbeddingsOptions }) {
+    constructor(fields: { options: EmbeddingsProvider.EmbeddingsOptions }) {
         super(fields);
     }
 
-    protected async _embed(input: string[], _?: EmbeddingsOptions): Promise<number[][]> {
+    protected async _embed(input: string[], _?: EmbeddingsProvider.EmbeddingsOptions): Promise<number[][]> {
         // console.log("input", input)
 
         // const response = await axios.post('http://127.0.0.1:8181/v1/embeddings',
