@@ -1,7 +1,7 @@
 {
   "$schema": "https://enconvo.com/schemas/extension.json",
   "name": "embeddings_providers",
-  "version": "1.1.117",
+  "version": "1.1.118",
   "description": "Embedding Providers",
   "title": "Embedding Providers",
   "icon": "icon.png",
@@ -195,6 +195,7 @@
       "name": "ollama_models",
       "title": "Ollama Models",
       "description": "get ollama model list",
+      "commandType": "function_command",
       "icon": "ollama.png",
       "showInCommandList": false,
       "mode": "no-view",
