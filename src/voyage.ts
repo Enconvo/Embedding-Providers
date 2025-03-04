@@ -1,6 +1,5 @@
 import { EmbeddingsProvider } from "@enconvo/api";
-import axios from "axios";
-
+import OpenAI from "openai";
 export default function main(options: any) {
 
     return new VoyageEmbeddingsProvider({ options })
@@ -9,24 +8,34 @@ export default function main(options: any) {
 
 
 class VoyageEmbeddingsProvider extends EmbeddingsProvider {
-    protected async _embed(input: string[], _?: EmbeddingsProvider.EmbeddingsOptions): Promise<number[][]> {
-        // console.log("input", input)
-        const baseUrl = "https://api.voyageai.com/v1/embeddings";
-        const response = await axios.post(baseUrl,
-            {
-                input: input,
-                model: this.options.modelName.value
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Authorization": `Bearer ${this.options.apiKey}`,
-                }
-            }
-        );
-        console.log("response", response.data.usage)
-
-        return response.data.data.map((item: any) => item.embedding);
+    openai: OpenAI
+    constructor(options: any) {
+        super(options)
+        this.openai = new OpenAI({
+            baseURL: "https://api.voyageai.com/v1",
+            apiKey: this.options.apiKey
+        })
     }
 
+
+    protected async _embed(input: string[], _?: EmbeddingsProvider.EmbeddingsOptions): Promise<number[][]> {
+
+        console.log("open input start", input[0].slice(0, 10))
+
+        try {
+
+            const response = await this.openai.embeddings.create({
+                model: this.options.modelName.value,
+                input: input,
+            });
+
+            console.log("response ", input[0].slice(0, 10), response.usage)
+
+            return response.data.map((item: OpenAI.Embeddings.Embedding) => item.embedding);
+        } catch (error) {
+            console.error("openai error", error)
+            throw error
+        }
+    }
 }
+
