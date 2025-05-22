@@ -19,8 +19,10 @@ export class EnConvoEmbeddingsProvider extends EmbeddingsProvider {
             "client_id": `${env['client_id']}`,
             "commandKey": `${env['commandKey']}`
         }
+        // const baseURL = "https://api.enconvo.com/v1"
+        const baseURL = "http://127.0.0.1:8181/v1"
         this.openai = new OpenAI({
-            baseURL: "https://api.enconvo.com/v1",
+            baseURL: baseURL,
             apiKey: "enconvo",
             defaultHeaders: headers
         })
@@ -36,7 +38,7 @@ export class EnConvoEmbeddingsProvider extends EmbeddingsProvider {
                 input: input
             });
 
-            console.log("response ", input[0].slice(0, 10), response.usage)
+            console.log("response --", input[0].slice(0, 10), response.usage)
 
             return response.data.map((item: OpenAI.Embeddings.Embedding) => item.embedding);
         } catch (error) {
