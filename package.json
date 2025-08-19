@@ -1,7 +1,7 @@
 {
   "$schema": "https://enconvo.com/schemas/extension.json",
   "name": "embeddings_providers",
-  "version": "1.1.122",
+  "version": "1.1.157",
   "description": "Embedding Providers",
   "title": "Embedding Providers",
   "icon": "icon.png",
@@ -18,7 +18,7 @@
       "description": "Embedding with Enconvo Cloud Plan , learn more : [docs](https://docs.enconvo.com/docs/providers/embedding)",
       "icon": "enconvo.png",
       "commandType": "provider",
-      "mode": "provider",
+      "mode": "no-view",
       "preferences": [
         {
           "name": "modelName",
@@ -26,8 +26,32 @@
           "type": "dropdown",
           "required": false,
           "title": "Model Name",
-          "default": "voyage/voyage-3-lite",
+          "default": "voyage/voyage-3.5-lite",
           "data": [
+            {
+              "title": "voyage-3-large (192 points per invoke)",
+              "value": "voyage/voyage-3-large",
+              "dimension": 1024,
+              "context": 32000
+            },
+            {
+              "title": "voyage-3.5 (96 points per invoke)",
+              "value": "voyage/voyage-3.5",
+              "dimension": 1024,
+              "context": 32000
+            },
+            {
+              "title": "voyage-3.5-lite (free)",
+              "value": "voyage/voyage-3.5-lite",
+              "dimension": 1024,
+              "context": 32000
+            },
+            {
+              "title": "voyage-code-3 (192 points per invoke)",
+              "value": "voyage/voyage-code-3",
+              "dimension": 1024,
+              "context": 32000
+            },
             {
               "title": "voyage-3 (96 points per invoke)",
               "value": "voyage/voyage-3",
@@ -101,8 +125,22 @@
       "description": "Embedding with openAI",
       "icon": "openai.png",
       "commandType": "provider",
-      "mode": "provider",
+      "mode": "no-view",
       "preferences": [
+        {
+          "name": "credentials",
+          "description": "The key management provider to use",
+          "type": "extension",
+          "required": false,
+          "default": "open_ai",
+          "extensionType": "credentials-provider",
+          "extensionFilter": {
+            "targetCommands": [
+              "credentials|open_ai"
+            ]
+          },
+          "title": "Credential Provider"
+        },
         {
           "name": "modelName",
           "description": "The model to generate the completion.",
@@ -132,26 +170,6 @@
           ]
         },
         {
-          "name": "apiKey",
-          "description": "OpenAI api key",
-          "type": "password",
-          "required": false,
-          "title": "OpenAI Api Key",
-          "default": "",
-          "defaultProxy": "key_management|open_ai",
-          "placeholder": "sk-********"
-        },
-        {
-          "name": "baseUrl",
-          "description": "OpenAI api base url",
-          "type": "textfield",
-          "required": false,
-          "title": "OpenAI Api Base Url",
-          "defaultProxy": "key_management|open_ai",
-          "default": "https://api.openai.com/v1",
-          "placeholder": "OpenAI Api Base Url"
-        },
-        {
           "name": "concurrency",
           "visibility": "hidden",
           "description": "Number of concurrent embeddings. Higher numbers mean faster processing but should be adjusted based on provider's rate limit",
@@ -168,8 +186,22 @@
       "description": "Embedding with Local Embeddings Powered by Ollama",
       "icon": "ollama.png",
       "commandType": "provider",
-      "mode": "provider",
+      "mode": "no-view",
       "preferences": [
+        {
+          "name": "credentials",
+          "description": "The key management provider to use",
+          "type": "extension",
+          "required": false,
+          "default": "ollama",
+          "extensionType": "credentials-provider",
+          "extensionFilter": {
+            "targetCommands": [
+              "credentials|ollama"
+            ]
+          },
+          "title": "Credential Provider"
+        },
         {
           "name": "modelName",
           "description": "The model to generate the completion.",
@@ -177,15 +209,6 @@
           "title": "Model Name",
           "default": "llama2:latest",
           "dataProxy": "embeddings_providers|ollama_models"
-        },
-        {
-          "name": "baseUrl",
-          "description": "Ollama API base url",
-          "type": "textfield",
-          "title": "Ollama API Base Url",
-          "default": "http://localhost:11434",
-          "placeholder": "http://localhost:11434",
-          "defaultProxy": "key_management|ollama"
         },
         {
           "name": "concurrency",
@@ -207,14 +230,19 @@
       "mode": "no-view",
       "preferences": [
         {
-          "name": "baseUrl",
-          "description": "Ollama api base url",
-          "type": "textfield",
+          "name": "credentials",
+          "description": "The key management provider to use",
+          "type": "extension",
           "required": false,
-          "title": "BaseUrl",
-          "default": "http://127.0.0.1:11434",
-          "placeholder": "http://127.0.0.1:11434",
-          "defaultProxy": "key_management|ollama"
+          "default": "ollama",
+          "defaultProxy": "embeddings_providers|real_ollama",
+          "extensionType": "credentials-provider",
+          "extensionFilter": {
+            "targetCommands": [
+              "credentials|ollama"
+            ]
+          },
+          "title": "Credential Provider"
         }
       ]
     },
@@ -224,16 +252,54 @@
       "description": "Embedding with Voyage AI",
       "icon": "voyage.png",
       "commandType": "provider",
-      "mode": "provider",
+      "mode": "no-view",
       "preferences": [
+        {
+          "name": "credentials",
+          "description": "The key management provider to use",
+          "type": "extension",
+          "required": false,
+          "default": "voyage",
+          "extensionType": "credentials-provider",
+          "extensionFilter": {
+            "targetCommands": [
+              "credentials|voyage"
+            ]
+          },
+          "title": "Credential Provider"
+        },
         {
           "name": "modelName",
           "description": "The model to generate the completion.",
           "type": "dropdown",
           "required": false,
           "title": "Model Name",
-          "default": "voyage-3",
+          "default": "voyage-3.5-lite",
           "data": [
+            {
+              "title": "voyage-3-large",
+              "value": "voyage-3-large",
+              "dimension": 1024,
+              "context": 32000
+            },
+            {
+              "title": "voyage-3.5",
+              "value": "voyage-3.5",
+              "dimension": 1024,
+              "context": 32000
+            },
+            {
+              "title": "voyage-3.5-lite",
+              "value": "voyage-3.5-lite",
+              "dimension": 1024,
+              "context": 32000
+            },
+            {
+              "title": "voyage-code-3",
+              "value": "voyage-code-3",
+              "dimension": 1024,
+              "context": 32000
+            },
             {
               "title": "voyage-3",
               "value": "voyage-3",
@@ -273,16 +339,6 @@
           ]
         },
         {
-          "name": "apiKey",
-          "description": "Voyage AI api key",
-          "type": "password",
-          "required": false,
-          "title": "Voyage AI Api Key",
-          "default": "",
-          "defaultProxy": "key_management|voyage",
-          "placeholder": "********"
-        },
-        {
           "name": "concurrency",
           "visibility": "hidden",
           "description": "Number of concurrent embeddings. Higher numbers mean faster processing but should be adjusted based on provider's rate limit",
@@ -299,9 +355,23 @@
       "description": "Embedding with [SiliconFlow](https://siliconflow.cn)",
       "icon": "siliconflow.png",
       "commandType": "provider",
-      "mode": "provider",
+      "mode": "no-view",
       "targetCommand": "embeddings_providers|open_ai",
       "preferences": [
+        {
+          "name": "credentials",
+          "description": "The key management provider to use",
+          "type": "extension",
+          "required": false,
+          "default": "siliconflow",
+          "extensionType": "credentials-provider",
+          "extensionFilter": {
+            "targetCommands": [
+              "credentials|siliconflow"
+            ]
+          },
+          "title": "Credential Provider"
+        },
         {
           "name": "modelName",
           "description": "The model to generate the embedding.",
@@ -335,26 +405,6 @@
               "context": 512
             }
           ]
-        },
-        {
-          "name": "apiKey",
-          "description": "How to get api key? [🔑here](https://cloud.siliconflow.cn/account/ak)",
-          "type": "password",
-          "required": false,
-          "title": "API Key",
-          "default": "",
-          "defaultProxy": "key_management|siliconflow",
-          "placeholder": "sk-********"
-        },
-        {
-          "name": "baseUrl",
-          "description": "OpenAI api base url",
-          "type": "textfield",
-          "required": false,
-          "title": "OpenAI Api Base Url",
-          "default": "https://api.siliconflow.cn/v1",
-          "placeholder": "Api Base Url",
-          "visibility": "hidden"
         },
         {
           "name": "concurrency",

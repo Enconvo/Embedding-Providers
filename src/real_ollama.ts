@@ -10,7 +10,8 @@ export default function main(options: any) {
 
 class OllamaEmbeddingsProvider extends EmbeddingsProvider {
     protected async _embed(input: string[], _?: EmbeddingsProvider.EmbeddingsOptions): Promise<number[][]> {
-        const baseUrl = this.options.baseUrl.endsWith('/') ? this.options.baseUrl : `${this.options.baseUrl}/`;
+        const credentials = this.options.credentials
+        const baseUrl = credentials.baseUrl.endsWith('/') ? credentials.baseUrl : `${credentials.baseUrl}/`;
         const api = `${baseUrl}api/embed`;
         console.log("input", input, api, this.options)
         try {

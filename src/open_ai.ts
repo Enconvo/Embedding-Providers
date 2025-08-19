@@ -13,10 +13,11 @@ class OpenAIEmbeddingsProvider extends EmbeddingsProvider {
     openai: OpenAI
     constructor(options: any) {
         super(options)
-        const baseUrl = this.options.baseUrl.endsWith('/') ? this.options.baseUrl : `${this.options.baseUrl}/`;
+        const credentials = this.options.credentials
+        const baseUrl = credentials.baseUrl.endsWith('/') ? credentials.baseUrl : `${credentials.baseUrl}/`;
         this.openai = new OpenAI({
             baseURL: baseUrl,
-            apiKey: this.options.openAIApiKey
+            apiKey: credentials.apiKey
         })
     }
     protected async _embed(input: string[], _?: EmbeddingsProvider.EmbeddingsOptions): Promise<number[][]> {

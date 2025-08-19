@@ -11,9 +11,10 @@ class VoyageEmbeddingsProvider extends EmbeddingsProvider {
     openai: OpenAI
     constructor(options: any) {
         super(options)
+        const credentials = this.options.credentials
         this.openai = new OpenAI({
             baseURL: "https://api.voyageai.com/v1",
-            apiKey: this.options.apiKey
+            apiKey: credentials.apiKey
         })
     }
 

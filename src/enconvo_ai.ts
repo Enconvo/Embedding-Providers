@@ -19,8 +19,8 @@ export class EnConvoEmbeddingsProvider extends EmbeddingsProvider {
             "client_id": `${env['client_id']}`,
             "commandKey": `${env['commandKey']}`
         }
-        // const baseURL = "https://api.enconvo.com/v1"
-        const baseURL = "http://127.0.0.1:8181/v1"
+        const baseURL = "https://api.enconvo.com/v1"
+        // const baseURL = "http://127.0.0.1:8181/v1"
         this.openai = new OpenAI({
             baseURL: baseURL,
             apiKey: "enconvo",
