@@ -1,146 +1,151 @@
-
+import { ListCache, RequestOptions } from "@enconvo/api";
+import { Ollama } from "ollama";
 
 const embeddingModels = [
     {
-        title: 'nomic-embed-text',
-        value: 'nomic-embed-text',
-        context: 512,
-        dimension: 768
+        title: "embeddinggemma:latest",
+        value: "embeddinggemma:latest",
+        context: 2000,
+        dimension: 768,
     },
     {
-        title: 'mxbai-embed-large',
-        value: 'mxbai-embed-large',
-        context: 512,
-        dimension: 1024
+        title: "embeddinggemma:300m",
+        value: "embeddinggemma:300m",
+        context: 2000,
+        dimension: 768,
     },
     {
-        title: 'snowflake-arctic-embed', // Default 335M parameter model
-        value: 'snowflake-arctic-embed',
+        title: "mxbai-embed-large",
+        value: "mxbai-embed-large",
         context: 512,
-        dimension: 1024
+        dimension: 1024,
     },
     {
-        title: 'snowflake-arctic-embed:335m', // Default 335M parameter model
-        value: 'snowflake-arctic-embed:335m',
+        title: "snowflake-arctic-embed", // Default 335M parameter model
+        value: "snowflake-arctic-embed",
         context: 512,
-        dimension: 1024
+        dimension: 1024,
     },
     {
-        title: 'snowflake-arctic-embed:137m', // 137M parameter model
-        value: 'snowflake-arctic-embed:137m',
+        title: "snowflake-arctic-embed:335m", // Default 335M parameter model
+        value: "snowflake-arctic-embed:335m",
         context: 512,
-        dimension: 768
+        dimension: 1024,
     },
     {
-        title: 'snowflake-arctic-embed:110m', // 110M parameter model
-        value: 'snowflake-arctic-embed:110m',
-        context: 512,
-        dimension: 768
+        title: "snowflake-arctic-embed:137m", // 137M parameter model
+        value: "snowflake-arctic-embed:137m",
+        context: 8192,
+        dimension: 768,
     },
     {
-        title: 'snowflake-arctic-embed:33m', // 33M parameter model
-        value: 'snowflake-arctic-embed:33m',
+        title: "snowflake-arctic-embed:110m", // 110M parameter model
+        value: "snowflake-arctic-embed:110m",
         context: 512,
-        dimension: 384
+        dimension: 768,
     },
     {
-        title: 'snowflake-arctic-embed:22m', // 22M parameter model
-        value: 'snowflake-arctic-embed:22m',
+        title: "snowflake-arctic-embed:33m", // 33M parameter model
+        value: "snowflake-arctic-embed:33m",
         context: 512,
-        dimension: 384
+        dimension: 384,
     },
     {
-        title: 'snowflake-arctic-embed2', // 22M parameter model
-        value: 'snowflake-arctic-embed2',
+        title: "snowflake-arctic-embed:22m", // 22M parameter model
+        value: "snowflake-arctic-embed:22m",
         context: 512,
-        dimension: 1024
+        dimension: 384,
     },
     {
-        title: 'all-minilm', // Embedding model trained on large sentence datasets
-        value: 'all-minilm',
+        title: "all-minilm", // Embedding model trained on large sentence datasets
+        value: "all-minilm",
         context: 256,
-        dimension: 384
+        dimension: 384,
     },
     {
-        title: 'embedding:22m', // 22M parameter embedding model
-        value: 'embedding:22m',
+        title: "embedding:22m", // 22M parameter embedding model
+        value: "embedding:22m",
         context: 256,
-        dimension: 384
+        dimension: 384,
     },
     {
-        title: 'embedding:33m', // 33M parameter embedding model
-        value: 'embedding:33m',
+        title: "embedding:33m", // 33M parameter embedding model
+        value: "embedding:33m",
         context: 256,
-        dimension: 384
+        dimension: 384,
     },
     {
-        title: 'bge-m3', // 33M parameter embedding model
-        value: 'bge-m3',
+        title: "bge-m3", // 33M parameter embedding model
+        value: "bge-m3",
+        context: 8192,
+        dimension: 1024,
+    },
+    {
+        title: "bge-large", // 33M parameter embedding model
+        value: "bge-large",
         context: 512,
-        dimension: 1024
+        dimension: 1024,
     },
     {
-        title: 'bge-large', // 33M parameter embedding model
-        value: 'bge-large',
-        context: 512,
-        dimension: 1024
-    },
-    {
-        title: 'paraphrase-multilingual', // 33M parameter embedding model
-        value: 'paraphrase-multilingual',
+        title: "paraphrase-multilingual", // 33M parameter embedding model
+        value: "paraphrase-multilingual",
         context: 128,
-        dimension: 768
+        dimension: 768,
     },
+];
 
-]
+async function fetchModels(options: RequestOptions) {
+    const credentials = options.credentials;
 
-async function fetch_model(options: any) {
-
-    const credentials = options.credentials
-    const baseUrl = credentials.baseUrl || "http://127.0.0.1:11434";
-    // console.log('baseUrl', baseUrl,options)
-
-    let models = []
-    try {
-        const resp = await fetch(`${baseUrl}/api/tags`)
-        const json = await resp.json()
-        // Filter and map models, checking if they are embedding models or regular models
-        models = json.models
-            .filter((item: any) => {
-                // Only include models that match our known embedding models
-                return embeddingModels.some(em => item.name.includes(em.value));
-            })
-            .map((item: any) => {
-                // Find the matching embedding model definition
-                const embeddingModel = embeddingModels.find(em => item.name === em.value || `${item.name}:latest` === em.value);
-
-                return {
-                    "title": item.name,
-                    "value": item.name,
-                    "dimension": embeddingModel?.dimension || 512,
-                    "context": embeddingModel?.context || 512
-                }
-            });
-    } catch (err) {
-        console.log(err)
+    const customHeaders: Record<string, string> = {};
+    if (credentials?.customHeaders) {
+        const headerString = credentials.customHeaders as string;
+        const headerPairs = headerString
+            .split("\n")
+            .filter((line) => line.trim() && line.trim().includes("="));
+        for (const pair of headerPairs) {
+            const [key, value] = pair.split("=");
+            if (key && value) {
+                customHeaders[key.trim()] = value.trim();
+            }
+        }
     }
 
-    return models
+    const ollama = new Ollama({
+        host: credentials?.baseUrl,
+        headers: {
+            ...customHeaders,
+            Authorization: `Bearer ${credentials?.apiKey || ""}`,
+            "User-Agent": "Enconvo/1.0",
+        },
+    });
+
+    let models: ListCache.ListItem[] = [];
+    try {
+        const list = await ollama.list();
+        models = list.models
+            .map((item) => {
+                const model = embeddingModels.find((em) => em.value === item.name);
+                return {
+                    title: item.name,
+                    value: item.name,
+                    providerName: item.details.family,
+                    dimension: model?.dimension || 512,
+                    context: model?.context || 1024,
+                };
+            });
+    } catch (err) {
+        console.log(err);
+    }
+
+    return models;
 }
 
 export default async function main(req: Request) {
-    const { options } = await req.json()
+    const options = await req.json();
 
-    let models = []
+    const modelCache = new ListCache(fetchModels);
 
-    try {
-        models = await fetch_model(options)
-    } catch (err) {
-        console.log(err)
-    }
-
-    return JSON.stringify(models)
+    const models = await modelCache.getList(options);
+    return JSON.stringify(models);
 }
-
-
-
