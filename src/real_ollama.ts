@@ -13,7 +13,6 @@ class OllamaEmbeddingsProvider extends EmbeddingsProvider {
     constructor(params: { options: EmbeddingsProvider.EmbeddingsOptions }) {
         super(params);
         const credentials = this.options.credentials;
-        console.log("ollama credentials", credentials);
 
         const customHeaders: Record<string, string> = {};
         if (credentials?.customHeaders) {
@@ -45,7 +44,7 @@ class OllamaEmbeddingsProvider extends EmbeddingsProvider {
             model: this.options.modelName.value,
             input: input,
         });
-        console.log("ollama embeddings response", response)
+        console.log("ollama embeddings response", input, response)
         return response.embeddings;
     }
 
