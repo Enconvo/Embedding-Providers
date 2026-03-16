@@ -177,29 +177,23 @@ async function fetchModels(options: RequestOptions) {
     });
 
     let models: ListCache.ListItem[] = [];
-    try {
-        const list = await ollama.list();
-        models = (await Promise.all(list.models
-            .map(async (item) => {
-                const modelInfo = await ollama.show({ model: item.name });
-                if (!modelInfo.capabilities.includes("embedding")) {
-                    return null;
-                }
+    const list = await ollama.list();
+    models = (await Promise.all(list.models
+        .map(async (item) => {
+            const modelInfo = await ollama.show({ model: item.name });
+            // if (!modelInfo.capabilities.includes("embedding")) {
+            //     return null;
+            // }
 
-                // console.log("modelInfo", item.name, JSON.stringify(modelInfo.capabilities, null, 2));
-                const model = embeddingModels.find((em) => em.value === item.name);
-                return {
-                    title: item.name,
-                    value: item.name,
-                    providerName: item.details.family,
-                    dimension: model?.dimension,
-                    context: model?.context || 1024,
-                };
-            }))).filter((model) => model !== null);
-
-    } catch (err) {
-        console.log(err);
-    }
+            const model = embeddingModels.find((em) => em.value === item.name);
+            return {
+                title: item.name,
+                value: item.name,
+                providerName: item.details.family,
+                dimension: model?.dimension,
+                context: model?.context || 1024,
+            };
+        }))).filter((model) => model !== null);
 
     return models;
 }

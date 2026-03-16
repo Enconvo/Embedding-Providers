@@ -29,7 +29,7 @@ export class EnConvoEmbeddingsProvider extends EmbeddingsProvider {
     }
     protected async _embed(input: string[], _?: EmbeddingsProvider.EmbeddingsOptions): Promise<number[][]> {
 
-        console.log("enconvo input start", input[0].slice(0, 10))
+        // console.log("enconvo input start", input[0].slice(0, 10))
 
         try {
 
@@ -38,7 +38,7 @@ export class EnConvoEmbeddingsProvider extends EmbeddingsProvider {
                 input: input
             });
 
-            console.log("response --", input[0].slice(0, 10), response.usage)
+            // console.log("response --", input[0].slice(0, 10), response.usage)
 
             return response.data.map((item: OpenAI.Embeddings.Embedding) => item.embedding);
         } catch (error) {
