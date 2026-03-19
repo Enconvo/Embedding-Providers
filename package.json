@@ -1,7 +1,7 @@
 {
   "$schema": "https://enconvo.com/schemas/extension.json",
   "name": "embeddings_providers",
-  "version": "1.1.242",
+  "version": "1.1.243",
   "description": "Text embedding providers for semantic search and knowledge base indexing, supporting OpenAI, Voyage AI, Ollama, SiliconFlow, and Enconvo Cloud with configurable concurrency and model selection.",
   "title": "Embedding Providers",
   "icon": "icon.png",
@@ -18,6 +18,7 @@
       "description": "Embedding with Enconvo Cloud Plan , learn more : [docs](https://docs.enconvo.com/docs/providers/embedding)",
       "icon": "enconvo.png",
       "commandType": "provider",
+      "provider_category": "embeddings",
       "mode": "no-view",
       "preferences": [
         {
@@ -26,103 +27,183 @@
           "type": "dropdown",
           "required": false,
           "title": "Model Name",
-          "default": "voyage/voyage-3.5-lite",
+          "default": "voyage/voyage-4-lite",
           "data": [
             {
               "title": "voyage-4-large (192 points per invoke)",
               "value": "voyage/voyage-4-large",
+              "id": "enconvo-voyage-4-large",
+              "description": "Voyage 4 Large — high-dimensional embeddings via Enconvo Cloud Plan.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "voyage-4 (96 points per invoke)",
               "value": "voyage/voyage-4",
+              "id": "enconvo-voyage-4",
+              "description": "Voyage 4 — balanced embeddings via Enconvo Cloud Plan.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "voyage-4-lite (free)",
               "value": "voyage/voyage-4-lite",
+              "id": "enconvo-voyage-4-lite",
+              "description": "Voyage 4 Lite — free embeddings via Enconvo Cloud Plan.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "voyage-3-large (192 points per invoke)",
               "value": "voyage/voyage-3-large",
+              "id": "enconvo-voyage-3-large",
+              "description": "Voyage 3 Large — high-quality embeddings via Enconvo Cloud Plan.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "voyage-3.5 (96 points per invoke)",
               "value": "voyage/voyage-3.5",
+              "id": "enconvo-voyage-3.5",
+              "description": "Voyage 3.5 — general-purpose embeddings via Enconvo Cloud Plan.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "voyage-3.5-lite (free)",
               "value": "voyage/voyage-3.5-lite",
+              "id": "enconvo-voyage-3.5-lite",
+              "description": "Voyage 3.5 Lite — free general-purpose embeddings via Enconvo Cloud Plan.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "voyage-code-3 (288 points per invoke)",
               "value": "voyage/voyage-code-3",
+              "id": "enconvo-voyage-code-3",
+              "description": "Voyage Code 3 — code-specialized embeddings via Enconvo Cloud Plan.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "voyage-3 (96 points per invoke)",
               "value": "voyage/voyage-3",
+              "id": "enconvo-voyage-3",
+              "description": "Voyage 3 — general-purpose embeddings via Enconvo Cloud Plan.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "voyage-3-lite (32 points per invoke)",
               "value": "voyage/voyage-3-lite",
+              "id": "enconvo-voyage-3-lite",
+              "description": "Voyage 3 Lite — lightweight embeddings via Enconvo Cloud Plan.",
               "dimension": 512,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "voyage-finance-2 (192 points per invoke)",
               "value": "voyage/voyage-finance-2",
+              "id": "enconvo-voyage-finance-2",
+              "description": "Voyage Finance 2 — finance-specialized embeddings via Enconvo Cloud Plan.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "voyage-multilingual-2 (192 points per invoke)",
               "value": "voyage/voyage-multilingual-2",
+              "id": "enconvo-voyage-multilingual-2",
+              "description": "Voyage Multilingual 2 — multilingual embeddings via Enconvo Cloud Plan.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "voyage-law-2 (96 points per invoke)",
               "value": "voyage/voyage-law-2",
+              "id": "enconvo-voyage-law-2",
+              "description": "Voyage Law 2 — legal-specialized embeddings via Enconvo Cloud Plan.",
               "dimension": 1024,
-              "context": 16000
+              "context": 16000,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "voyage-code-2 (96 points per invoke)",
               "value": "voyage/voyage-code-2",
+              "id": "enconvo-voyage-code-2",
+              "description": "Voyage Code 2 — code-specialized embeddings via Enconvo Cloud Plan.",
               "dimension": 1536,
-              "context": 16000
+              "context": 16000,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "OpenAI text-embedding-3-small (10 points per invoke)",
               "value": "openai/text-embedding-3-small",
+              "id": "enconvo-openai-text-embedding-3-small",
+              "description": "OpenAI Text Embedding 3 Small — cost-effective embeddings via Enconvo Cloud Plan.",
               "dimension": 1536,
-              "context": 8191
+              "context": 8191,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "OpenAI text-embedding-3-large (55 points per invoke)",
               "value": "openai/text-embedding-3-large",
+              "id": "enconvo-openai-text-embedding-3-large",
+              "description": "OpenAI Text Embedding 3 Large — high-dimensional embeddings via Enconvo Cloud Plan.",
               "dimension": 3072,
-              "context": 8191
+              "context": 8191,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             },
             {
               "title": "OpenAI text-embedding-ada-002 (40 points per invoke)",
               "value": "openai/text-embedding-ada-002",
+              "id": "enconvo-openai-text-embedding-ada-002",
+              "description": "OpenAI Text Embedding Ada 002 — legacy embeddings via Enconvo Cloud Plan.",
               "dimension": 1536,
-              "context": 8191
+              "context": 8191,
+              "is_online": true,
+              "is_enconvo_cloud": true,
+              "is_bring_your_own_key": false
             }
           ]
         },
@@ -144,6 +225,7 @@
       "description": "Embedding with openAI",
       "icon": "openai.png",
       "commandType": "provider",
+      "provider_category": "embeddings",
       "mode": "no-view",
       "preferences": [
         {
@@ -171,20 +253,35 @@
             {
               "title": "text-embedding-ada-002",
               "value": "text-embedding-ada-002",
+              "id": "openai-text-embedding-ada-002",
+              "description": "OpenAI Text Embedding Ada 002 — legacy embeddings with your own API key.",
               "dimension": 1536,
-              "context": 8191
+              "context": 8191,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "text-embedding-3-small",
               "value": "text-embedding-3-small",
+              "id": "openai-text-embedding-3-small",
+              "description": "OpenAI Text Embedding 3 Small — cost-effective embeddings with your own API key.",
               "dimension": 1536,
-              "context": 8191
+              "context": 8191,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "text-embedding-3-large",
               "value": "text-embedding-3-large",
+              "id": "openai-text-embedding-3-large",
+              "description": "OpenAI Text Embedding 3 Large — high-dimensional embeddings with your own API key.",
               "dimension": 3072,
-              "context": 8191
+              "context": 8191,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             }
           ]
         },
@@ -206,6 +303,7 @@
       "description": "Embedding with Local Embeddings Powered by Ollama",
       "icon": "ollama.png",
       "commandType": "provider",
+      "provider_category": "embeddings",
       "mode": "no-view",
       "preferences": [
         {
@@ -274,6 +372,7 @@
       "description": "Embedding with Voyage AI",
       "icon": "voyage.png",
       "commandType": "provider",
+      "provider_category": "embeddings",
       "mode": "no-view",
       "preferences": [
         {
@@ -301,80 +400,145 @@
             {
               "title": "voyage-4-large",
               "value": "voyage-4-large",
+              "id": "voyage-4-large",
+              "description": "Voyage 4 Large — high-quality embeddings with your own API key.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "voyage-4",
               "value": "voyage-4",
+              "id": "voyage-4",
+              "description": "Voyage 4 — balanced embeddings with your own API key.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "voyage-4-lite",
               "value": "voyage-4-lite",
+              "id": "voyage-4-lite",
+              "description": "Voyage 4 Lite — lightweight embeddings with your own API key.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "voyage-3-large",
               "value": "voyage-3-large",
+              "id": "voyage-3-large",
+              "description": "Voyage 3 Large — high-quality embeddings with your own API key.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "voyage-3.5",
               "value": "voyage-3.5",
+              "id": "voyage-3.5",
+              "description": "Voyage 3.5 — general-purpose embeddings with your own API key.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "voyage-3.5-lite",
               "value": "voyage-3.5-lite",
+              "id": "voyage-3.5-lite",
+              "description": "Voyage 3.5 Lite — lightweight embeddings with your own API key.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "voyage-code-3",
               "value": "voyage-code-3",
+              "id": "voyage-code-3",
+              "description": "Voyage Code 3 — code-specialized embeddings with your own API key.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "voyage-3",
               "value": "voyage-3",
+              "id": "voyage-3",
+              "description": "Voyage 3 — general-purpose embeddings with your own API key.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "voyage-3-lite",
               "value": "voyage-3-lite",
+              "id": "voyage-3-lite",
+              "description": "Voyage 3 Lite — lightweight embeddings with your own API key.",
               "dimension": 512,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "voyage-finance-2",
               "value": "voyage-finance-2",
+              "id": "voyage-finance-2",
+              "description": "Voyage Finance 2 — finance-specialized embeddings with your own API key.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "voyage-multilingual-2",
               "value": "voyage-multilingual-2",
+              "id": "voyage-multilingual-2",
+              "description": "Voyage Multilingual 2 — multilingual embeddings with your own API key.",
               "dimension": 1024,
-              "context": 32000
+              "context": 32000,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "voyage-law-2",
               "value": "voyage-law-2",
+              "id": "voyage-law-2",
+              "description": "Voyage Law 2 — legal-specialized embeddings with your own API key.",
               "dimension": 1024,
-              "context": 16000
+              "context": 16000,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "voyage-code-2",
               "value": "voyage-code-2",
+              "id": "voyage-code-2",
+              "description": "Voyage Code 2 — code-specialized embeddings with your own API key.",
               "dimension": 1536,
-              "context": 16000
+              "context": 16000,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             }
           ]
         },
@@ -396,6 +560,7 @@
       "description": "Embedding with [SiliconFlow](https://siliconflow.cn)",
       "icon": "siliconflow.png",
       "commandType": "provider",
+      "provider_category": "embeddings",
       "mode": "no-view",
       "targetCommand": "embeddings_providers|open_ai",
       "preferences": [
@@ -424,26 +589,46 @@
             {
               "title": "BAAI/bge-m3",
               "value": "BAAI/bge-m3",
+              "id": "siliconflow-bge-m3",
+              "description": "BGE-M3 — multilingual embeddings via SiliconFlow.",
               "dimension": 1024,
-              "context": 8000
+              "context": 8000,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "netease-youdao/bce-embedding-base_v1",
               "value": "netease-youdao/bce-embedding-base_v1",
+              "id": "siliconflow-bce-embedding-base",
+              "description": "BCE Embedding Base — Chinese-English embeddings via SiliconFlow.",
               "dimension": 768,
-              "context": 512
+              "context": 512,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "BAAI/bge-large-en-v1.5",
               "value": "BAAI/bge-large-en-v1.5",
+              "id": "siliconflow-bge-large-en",
+              "description": "BGE Large EN — English-optimized embeddings via SiliconFlow.",
               "dimension": 1024,
-              "context": 512
+              "context": 512,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             },
             {
               "title": "BAAI/bge-large-zh-v1.5",
               "value": "BAAI/bge-large-zh-v1.5",
+              "id": "siliconflow-bge-large-zh",
+              "description": "BGE Large ZH — Chinese-optimized embeddings via SiliconFlow.",
               "dimension": 1024,
-              "context": 512
+              "context": 512,
+              "is_online": true,
+              "is_enconvo_cloud": false,
+              "is_bring_your_own_key": true
             }
           ]
         },
